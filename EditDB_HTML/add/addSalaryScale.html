@@ -10,7 +10,7 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
-  <link rel="stylesheet" href="CSS/main.css">
+  <link rel="stylesheet" href="main.css">
 
   <meta name="theme-color" content="#fafafa">
 </head>
@@ -21,36 +21,35 @@
   <![endif]-->
   
   <div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="current.html">Current</a>
-    <a href="past.html">Past</a>
-    <a href="projected.html">Projected</a>
-    <a href="departments.html"> Departments</a>
-    <a href="employees.html"> Employees</a>
-    <a href="adjustments.html"> Adjustments</a>
-    <a href="salaryScale.html"> Salary Scale</a>
-    <a href="adjEmp.html"> EmployeeAdjustments</a>
-    <a href="empInfoYear.html">EmployeeInformationByYear</a>
+    <a href="http://129.114.104.171/~dbteam/index.html">Home</a>
+    <a href="http://129.114.104.171/~dbteam/current.html">Current</a>
+    <a href="http://129.114.104.171/~dbteam/past.html">Past</a>
+    <a href="http://129.114.104.171/~dbteam/projected.html">Projected</a>
     <div class="dropdown">
       <button class="dropbtn">Edit Data 
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-        <a href="add.html">add</a>
-        <a href="update.html">update</a>
-        <a href="delete.html">delete</a>
+        <a href="http://129.114.104.171/~dbteam/add.html">add</a>
+        <a href="http://129.114.104.171/~dbteam/update.html">update</a>
+        <a href="http://129.114.104.171/~dbteam/delete.html">delete</a>
       </div>
     </div> 
   </div>
 
-  <!-- Add your site or application content here -->
-  <h1 class="pagetitle">Delete</h1>
-  <a href="EditDB_HTML/delete/deleteEmployee.html">Delete Employee</a> <br>
-  <a href="EditDB_HTML/delete/deleteDepartment.html">Delete Department</a> <br>
-  <a href="EditDB_HTML/delete/deleteEmpInfo.html">Delete Employee Information by Year</a> <br>
-  <a href="EditDB_HTML/delete/deleteAdjustments.html">Delete Adjustments</a> <br>
-  <a href="EditDB_HTML/delete/deleteEmpAdj.html">Delete Employee Adjustments</a> <br>
-  <a href="EditDB_HTML/delete/deleteSalaryScale.html">Delete Salary Scale</a> <br>
+  <h1 class="pagetitle">Add Salary Scale</h1>
+
+
+
+
+<form action="http://129.114.104.171/~dbteam/EditDB_HTML/add/addEmployee" method="POST">
+    Rank: <input type="text" name="rank"><br>
+    Step: <input type="text" name="step"><br>
+    Base Salary: <input type="text" name="baseSal"><br>
+   <button type="submit">Add Salary Scale</button>
+  </form>
+
+
 
 
 

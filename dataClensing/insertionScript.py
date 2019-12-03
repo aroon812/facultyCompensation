@@ -10,7 +10,7 @@ def deleteLastComma(insertion):
 
 data = pandas.read_excel('mockData.xlsx')
 data.drop([0], inplace=True)
-attributeTuples = [('Employee', ['upsID', 'lastName', 'firstName']),
+attributeTuples = [('Employee', ['upsID', 'lastName', 'firstName', 'type','dept']),
                ('Department', ['deptID', 'deptName']),
                ('SalaryScale', ['rank', 'step', 'baseSalary']),
                ('SalaryAdjustments', ['adjID', 'adjVal', 'operation', 'description']),
@@ -25,7 +25,7 @@ print(data)
 
 
 itemNum = len(data.index)
-
+counter=0
 for i in range(0, itemNum):
     for (relation, attributes) in attributeTuples:
         attributesFilled = True
@@ -37,7 +37,8 @@ for i in range(0, itemNum):
         if attributesFilled:
                 for attribute in attributes:
                     if attribute is 'adjID':
-                        addition = "1"
+                        addition = counter
+                        counter+=1
                     else:
                         addition = '\'' + str(data.iloc[i][attribute]) + '\''
                     insertion = insertion + addition + ',' 
