@@ -10,9 +10,7 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
-
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="CSS/main.css">
 
   <meta name="theme-color" content="#fafafa">
 </head>
@@ -21,18 +19,28 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="add.html">Add Employee</a></li>
-    <li><a href="update.html">Update Employee</a></li>
-    <li><a href="remove.html">Remove Employee</a></li>
-    <li><a href="proj.html">2020 - 2021 Projected</a></li>
-    <li><a href="cur.html">2019 - 2020 Current</a></li>
-    <li><a href="#">2018 - 2019 Past</a></li>
-  </ul>
-  <!-- Add your site or application content here -->
-  <p>past</p>
   
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="current.html">Current</a>
+    <a href="past.html">Past</a>
+    <a href="projected.html">Projected</a>
+    <div class="dropdown">
+      <button class="dropbtn">Edit Data 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="add.html">add</a>
+        <a href="update.html">update</a>
+        <a href="delete.html">delete</a>
+      </div>
+    </div> 
+  </div>
+
+  <!-- Add your site or application content here -->
+  <h1 class="pagetitle">Past</h1>
+  <p class="pagetext">This is sample text</p>
+
 
 
   <script src="js/vendor/modernizr-3.7.1.min.js"></script>
