@@ -8,8 +8,5 @@ var http = require('http');
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use('/addEmployee', addEmployee);
+app.listen(8080);
 
-http.createServer(function (request, response) {
-   response.writeHead(200, {'Content-Type': 'text/plain'});
-   response.end('Hello World! Node.js is working correctly.\n');
-}).listen(8080);

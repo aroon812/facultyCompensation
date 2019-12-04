@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 var express = require('express');
 var app = express();
 var router = express.Router();
-
+console.log("spaghetti")
 /* 
 function employeeByType(){
   let sql = `SELECT * FROM Employee WHERE type = ?`;
@@ -28,12 +28,11 @@ router.post('/', function(req, res){
     if (err) {
       console.error(err.message);
     }
-    console.log('Connected to spaghetti');
   });
-  res.send(`<h1>Full name is:${req.body.fname} ${req.body.lname}.<\h1>`);
   
-  db.run('insert into Employee values(?, ?, ?, ?)', [parseInt(req.body.upsID), req.body.fname, req.body.lname, req.body.type], function(err) {
+  db.run('insert into Employee values(?, ?, ?, ?, ?)', [parseInt(req.body.upsID), req.body.fname, req.body.lname, req.body.type, req.body.dept], function(err) {
     if (err) {
+      res.send(`<h1>${err.message}<\h1>`);
       return console.log(err.message);
     }
     console.log('An employee had been added');
