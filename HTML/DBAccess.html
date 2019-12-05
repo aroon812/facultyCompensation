@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>University of Puget Sound Payroll</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="manifest" href="site.webmanifest">
+		<link rel="apple-touch-icon" href="icon.png">
+		<!-- Place favicon.ico in the root directory -->
+		<link rel="stylesheet" href="../CSS/main.css">
+		
+		<meta name="theme-color" content="#fafafa">
+	</head>
+			  
+	<body>
+		<div class="navbar">
+			<a href="../index.html">Home</a>
+			<a href="./PHP/showCurrent.php">Current</a>
+			<a href="./HTML/past.html">Past</a>
+			<a href="./HTML/projected.html">Projected</a>
+			<a href="./PHP/showDepartments.php"> Departments</a>
+			<a href="./PHP/showEmployees.php"> Employees</a>
+			<a href="./PHP/showAdjustments.php"> Adjustments</a>
+			<a href="./PHP/showSalaryScale.php"> Salary Scale</a>
+			<a href="./PHP/showAdjEmp.php"> EmployeeAdjustments</a>
+			<a href="./PHP/showEmpInfoYear.php">EmployeeInformationByYear</a>
+			<div class="dropdown">
+				<button class="dropbtn">Edit Data 
+				<i class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-content">
+				<a href="./HTML/add.html">add</a>
+				<a href="./HTML/update.html">update</a>
+				<a href="./HTML/delete.html">delete</a>
+				<a href="./HTML/DBAccess.html">SQL</a>
+				</div>
+			</div> 
+		</div>
+
+		<h2 class="index">SQLite3 DB Access</h2>
+		<div class="sql">
+			<form action="../PHP/DBAccess.php" method="post">
+				<fieldset>
+					<legend>Query:</legend>
+					<textarea name="query" placeholder="SQLite3 Goes Here..." class="sql" autofocus></textarea><br>
+					<input type = "submit" name = "submit" value="Run">
+				</fieldset>
+			</form>
+		</div>
+	</body>
+</html>
