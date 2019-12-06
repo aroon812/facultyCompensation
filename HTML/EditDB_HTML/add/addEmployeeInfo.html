@@ -45,18 +45,35 @@
 
   <h1 class="pagetitle">Add Employee Information by Year</h1>
 
-
-
-
-<form action="http://129.114.104.171/~dbteam/EditDB_HTML/add/addEmployeeInfo" method="POST">
-    Year: <input type="text" name="year" required><br>
-    upsID: <input type="text" name="upsID" required><br>
-    Position Number: <input type="text" name="posNum" required><br>
-    Include: <input type="text" name="include" required><br>
-    Rank: <input type="text" name="rank" required><br>
-    Step: <input type="text" name="step" required><br>
-    Step Year: <input type="text" name="stepYr"><br>
-   <button type="submit">Add Employee</button>
+  <form action="./../../../PHP/EditDB_PHP/add/addEmpInfoYear.php" method="post">
+    <fieldset>
+      <legend>Add Employee Info Form</legend>
+      
+     <br><br>
+      
+      Year:<br> 
+      <input type = "text" name = "year" placeholder="year" required autofocus><br>
+      
+      upsID:<br>
+      <input type = "text" name = "upsID" placeholder="upsID"><br>
+      
+      Position Number:<br>
+      <input type = "text" name = "positionNumber" placeholder="position number" required><br>
+      
+      Include:<br>
+      <input type = "text" name = "includeNext" placeholder="include next" required><br>
+      
+      Rank:<br>
+      <input type = "text" name = "rank" placeholder="rank"><br>
+      
+      Step:<br>
+      <input type = "text" name = "step" placeholder="step" required><br>
+      
+      Step Year:<br>
+      <input type = "text" name = "stepYear" placeholder="step year" required><br>
+      
+      <input type = "submit" name = "submit" value="Add Employee Information by Year">
+    </fieldset>
   </form>
 
 

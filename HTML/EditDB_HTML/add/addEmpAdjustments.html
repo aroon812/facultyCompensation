@@ -45,16 +45,33 @@
 
   <h1 class="pagetitle">Add Employee Adjustment</h1>
 
-
-
-
-<form action="http://129.114.104.171/~dbteam/EditDB_HTML/add/addEmpAdjustments" method="POST">
+  <!--
+<form action="./../../../PHP/EditDB_PHP/add/addEmployeeAdjustment.php" method="POST">
     Year: <input type="text" name="year" required><br>
     upsID: <input type="text" name="upsID" required><br>
     adjID: <input type="text" name="adjID" required><br>
    <button type="submit">Add Employee Adjustment</button>
   </form>
+-->
 
+  <form action="./../../../PHP/EditDB_PHP/add/addEmployeeAdjustment.php" method="post">
+    <fieldset>
+      <legend>Add Employee Adjustment Form</legend>
+      
+      <br><br>
+      
+      Year:<br> 
+      <input type = "text" name = "year" placeholder="year" required autofocus><br>
+      
+      upsID:<br>
+      <input type = "text" name = "upsID" placeholder="upsID" required><br>
+      
+      adjID:<br>
+      <input type = "text" name = "adjID" placeholder="adjustment ID" required><br>
+      
+      <input type = "submit" name = "submit" value="Add Employee">
+    </fieldset>
+  </form>
 
 
 

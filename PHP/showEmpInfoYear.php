@@ -43,11 +43,14 @@
 
   <!-- Add your site or application content here -->
   <h1 class="pagetitle">Employee Position Information by Year</h1>
-  <p class="pagetext">(Year, upsID, PositionNumber, Include Next, Rank, Step, Step Year, First Name, Last Name, Type, Department)<br>
+  <p class="pagetext">
     <?php
+            include "totalSalary.php";
             //path to the SQLite database file
             $db_file = '../DB/bigTuba.db';
-        
+
+            
+            
             try {
                 //open connection to the airport database file
                 $db = new PDO('sqlite:' . $db_file);
@@ -56,7 +59,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 //return all passengers, and store the result set
                 $query_str = $db->prepare("select year, upsID, positionNumber, includeNext, Rank, Step, stepYear, firstName, lastName from EmployeePositionInformationByYear natural join Employee order by Year desc");
-            
+
                 if ($query_str->execute()){
                     $i = 0;
                     $result_set = $db->query("select year, upsID, positionNumber, includeNext, rank, step, stepYear, firstName, lastName from EmployeePositionInformationByYear natural join Employee order by Year desc");
@@ -66,8 +69,30 @@
                       if ($row[$i] == NULL){
                         echo "<tr><td>[NULL]<tr><td>";
                       } else {
-                        echo "<tr><td>" . $row['year'] . "</td><td>" . $row['upsID'] . "</td><td>" . $row['positionNumber'] . "</td><td>" . $row['includeNext'] . "</td><td>" . $row['rank'] . "</td><td>" . $row['step'] . "</td><td>" . $row['stepYear'] . "</td><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td></tr>";
+                        echo "<tr><td>" . $row['year'] . "</td><td>" . $row['upsID'] . "</td><td>" . $row['positionNumber'] . "</td><td>" . $row['includeNext'] . "</td><td>" . $row['rank'] . "</td><td>" . $row['step'] . "</td><td>" . $row['stepYear'] . "</td><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td><td>";
                       }
+                      echo "</td><td> <form action='./EditDB_PHP/update/updateEmpInfoYear.php' method='post'>
+                              <input type='hidden' name='year' value= $row[0]>
+                              <input type='hidden' name='upsID' value= $row[1]>
+                              <input type='hidden' name='positionNumber' value= $row[2]>
+                              <input type='hidden' name='includeNext' value= $row[3]>
+                              <input type='hidden' name='rank' value= $row[4]>
+                              <input type='hidden' name='step' value= $row[5]>
+                              <input type='hidden' name='stepYear' value= $row[6]>
+                              <input type='submit' value='Update'>
+                            </form>
+                            </td><td>
+                              <form action='./EditDB_PHP/delete/deleteEmpInfoYear.php' method='post'>
+                              <input type='hidden' name='year' value= $row[0]>
+                              <input type='hidden' name='upsID' value= $row[1]>
+                              <input type='hidden' name='positionNumber' value= $row[2]>
+                              <input type='hidden' name='includeNext' value= $row[3]>
+                              <input type='hidden' name='rank' value= $row[4]>
+                              <input type='hidden' name='step' value= $row[5]>
+                              <input type='hidden' name='stepYear' value= $row[6]>
+                              <input type='submit' value='Delete'>
+                            </form>
+                            </td></tr>";  
                     }
                     echo "</table>";
                 }

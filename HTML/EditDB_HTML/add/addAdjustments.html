@@ -45,15 +45,26 @@
 
   <h1 class="pagetitle">Add Adjustment</h1>
 
-
-
-
-<form action="./../../../PHP/EditDB_PHP/add/addAdjustment.php" method="POST">
-    adjID: <input type="text" name="adjID" required><br>
-    Adjustment Value: <input type="text" name="adjVal" required><br>
-    Operation: <input type="text" name="operation" required><br>
-    Description: <input type="text" name="description" required><br>
-   <button type="submit">Add Adjustment</button>
+  <form action="./../../../PHP/EditDB_PHP/add/addAdjustment.php" method="post">
+    <fieldset>
+      <legend>Add Adjustment Form</legend>
+      
+      <br><br>
+      
+      adjID:<br> 
+      <input type = "text" name = "adjID" placeholder="adjustment ID" required autofocus><br>
+      
+      Adjustment Value:<br>
+      <input type = "text" name = "adjVal" placeholder="adjustment value" required><br>
+      
+      Operation:<br>
+      <input type = "text" name = "operation" placeholder="operation" required><br>
+      
+      Description:<br>
+      <input type = "text" name = "description" placeholder="description" required><br>
+      
+      <input type = "submit" name = "submit" value="Add Adjustment">
+    </fieldset>
   </form>
 
 

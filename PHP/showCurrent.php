@@ -45,6 +45,8 @@
   <h1 class="pagetitle">Current</h1>
   <p class="pagetext">(First Name, Last Name, Base Salary)<br>
     <?php
+            include "totalSalary.php";
+
             //path to the SQLite database file
             $db_file = '../DB/bigTuba.db';
         
@@ -59,20 +61,22 @@
             
                 if ($query_str->execute()){
                     $i = 0;
-                    $result_set = $db->query("with A as (select max(year) from EmployeePositionInformationByYear) select firstName, lastName, baseSalary from SalaryScale natural join EmployeePositionInformationByYear natural join Employee where year in A");
+                    $totalSalaries = 0;
+                    $result_set = $db->query("with A as (select max(year) from EmployeePositionInformationByYear) select firstName, lastName, baseSalary, year, upsID from SalaryScale natural join EmployeePositionInformationByYear natural join Employee where year in A");
                     echo "<table align='center'>";
-                    echo "<tr><td>firstName</td><td>lastName</td><td>baseSalary</td></tr>";
+                    echo "<tr><td>firstName</td><td>lastName</td><td>baseSalary</td><td>totalSalary</td></tr>";
                     while($row = $result_set->fetch()) {
                       if ($row[$i] == NULL){
                         echo "<tr><td>[NULL]<tr><td>";
                       } else {
-                        echo "<tr><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['baseSalary'] ."</td></tr>";
+                        $totalSalary = findTotalSalary($db, $row['upsID'], $row['year']);
+                        echo "<tr><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['baseSalary'] ."</td><td>". $totalSalary . "</td></tr>";
+                        $totalSalaries += $totalSalary;
                       }
-                       
-                        
                     }
                     echo "</table>";
                 }
+                echo "<h3>Total of Current Salaries: $totalSalaries";
                 //disconnect from db
                 $db = null;
             } catch(PDOException $e) {
