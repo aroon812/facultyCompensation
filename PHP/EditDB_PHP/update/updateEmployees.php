@@ -19,7 +19,7 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
-  
+
   <div class="navbar">
     <a href="../../../index.html">Home</a>
     <a href="../../current.html">Current</a>
@@ -43,10 +43,43 @@
     </div> 
   </div>
 
-  <!-- Add your site or application content here -->
-  <h1 class="pagetitle">Update Salary Scale</h1>
+  <h1 class="pagetitle">Update Employee</h1>
 
+  <?php session_start(); ?>
+	<form action="./MSG/updateEmployeesMsg.php" method="post">
+		<fieldset>
+			<legend>Update Employee</legend>
+				
+			Please fill out the following information to update the database.<br><br>
+			<?php				
+                $upsID = $_POST['upsID'];
+                $lastName = $_POST['lastName'];
+                $firstName = $_POST['firstName'];
+                $type = $_POST['type'];
+                $dept = $_POST['dept'];
 
+                echo 
+                "
+                UPS ID:<br> 
+                <input type = 'text' name = 'upsID' value='$upsID' required autofocus readonly><br>
+                
+                Last Name:<br>
+                <input type = 'text' name = 'lastName' value='$lastName' required><br>
+                
+                First Name:<br>
+                <input type = 'text' name = 'firstName' value='$firstName' required><br>
+                
+                Type:<br>
+                <input type = 'text' name = 'type' value='$type' required><br>
+                
+                Department:<br>
+                <input type = 'text' name = 'dept' value='$dept' required> <br>
+
+                <input type = 'submit' name = 'submit' value='Update Employee'>
+                ";
+			?>			
+		</fieldset>
+	</form>
 
 
 </body>

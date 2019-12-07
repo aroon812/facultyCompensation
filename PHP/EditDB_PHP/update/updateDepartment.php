@@ -19,7 +19,7 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
-  
+
   <div class="navbar">
     <a href="../../../index.html">Home</a>
     <a href="../../current.html">Current</a>
@@ -43,10 +43,30 @@
     </div> 
   </div>
 
-  <!-- Add your site or application content here -->
-  <h1 class="pagetitle">Update Adjustments</h1>
+  <h1 class="pagetitle">Update Department</h1>
 
+  <?php session_start(); ?>
+	<form action="./MSG/updateDepartmentMsg.php" method="post">
+		<fieldset>
+			<legend>Update Department</legend>
+				
+			Please fill out the following information to update the database.<br><br>
+			<?php				
+                $deptID = $_POST['deptID'];
+                $deptName = $_POST['deptName'];
+                echo 
+                "
+                UPS ID:<br> 
+                <input type = 'text' name = 'deptID' value='$deptID' required autofocus readonly><br>
+                
+                Department:<br>
+                <input type = 'text' name = 'deptName' value='$deptName' required> <br>
 
+                <input type = 'submit' name = 'submit' value='Update Department'>
+                ";
+			?>			
+		</fieldset>
+	</form>
 
 
 </body>

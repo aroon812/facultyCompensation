@@ -42,8 +42,7 @@
   </div>
 
   <!-- Add your site or application content here -->
-  <h1 class="pagetitle">Current</h1>
-  <p class="pagetext">(First Name, Last Name, Base Salary)<br>
+  <h1 class="pagetitle">Past</h1>
     <?php
             include "totalSalary.php";
 
@@ -62,9 +61,10 @@
                 if ($query_str->execute()){
                     $i = 0;
                     $totalSalaries = 0;
+                    $year=$_POST["year"];
                     $salariesByType = array("T"=>0,"I"=>0,"CL"=>0,"S"=>0,"VAP"=>0,"VIN"=>0,"E"=>0);
                     $salariesByRank = array("Inst"=>0,"Asst"=>0,"Assc"=>0,"Full"=>0,"CLAsst"=>0,"CLAssc"=>0);
-                    $result_set = $db->query("with A as (select max(year) from EmployeePositionInformationByYear) select firstName, lastName, baseSalary, year, upsID, rank, type from SalaryScale natural join EmployeePositionInformationByYear natural join Employee where year in A");
+                    $result_set = $db->query("select firstName, lastName, baseSalary, year, upsID, rank, type from SalaryScale natural join EmployeePositionInformationByYear natural join Employee where year=$year");
                     
                     echo "<table align='center'>";
                     echo "<tr><td>firstName</td><td>lastName</td><td>baseSalary</td><td>totalSalary</td></tr>";
@@ -120,20 +120,20 @@
                     echo "</table>";
                 }
                 //$sals=$salariesByType["T"];
-                echo "<h3>Total of Current Salaries: $totalSalaries";
-                echo "<h3>Total of Tenure Salaries:" . $salariesByType["T"];
-                echo "<h3>Total of Instructor Salaries:" . $salariesByType["I"];
-                echo "<h3>Total of Clinical Salaries:" . $salariesByType["CL"];
-                echo "<h3>Total of Shared Salaries:" .  $salariesByType["S"];
-                echo "<h3>Total of Visiting Assitant Salaries:" . $salariesByType["VAP"];
-                echo "<h3>Total of Visiting Instructor Salaries:" . $salariesByType["VIN"];
-                echo "<h3>Total of Emeritus Salaries:" . $salariesByType["E"];
-                echo "<h3>Total of Current Assistant Salaries:" . $salariesByRank["Asst"];
-                echo "<h3>Total of Current Associate Salaries:" . $salariesByRank["Assc"];
-                echo "<h3>Total of Current Full Salaries:" . $salariesByRank["Full"];
-                echo "<h3>Total of Current Instructor Salaries:" . $salariesByRank["Inst"];
-                echo "<h3>Total of Current Clinical Assitant Salaries:" . $salariesByRank["CLAsst"];
-                echo "<h3>Total of Current Clinical Associate Salaries:" . $salariesByRank["CLAssc"];
+                echo "<h3>Total of $year Salaries: $totalSalaries";
+                echo "<h3>Total of $year Tenure Salaries:" . $salariesByType["T"];
+                echo "<h3>Total of $year Instructor Salaries:" . $salariesByType["I"];
+                echo "<h3>Total of $year Clinical Salaries:" . $salariesByType["CL"];
+                echo "<h3>Total of $year Shared Salaries:" .  $salariesByType["S"];
+                echo "<h3>Total of $year Visiting Assitant Salaries:" . $salariesByType["VAP"];
+                echo "<h3>Total of $year Visiting Instructor Salaries:" . $salariesByType["VIN"];
+                echo "<h3>Total of $year Emeritus Salaries:" . $salariesByType["E"];
+                echo "<h3>Total of $year Assistant Salaries:" . $salariesByRank["Asst"];
+                echo "<h3>Total of $year Associate Salaries:" . $salariesByRank["Assc"];
+                echo "<h3>Total of $year Full Salaries:" . $salariesByRank["Full"];
+                echo "<h3>Total of $year Instructor Salaries:" . $salariesByRank["Inst"];
+                echo "<h3>Total of $year Clinical Assitant Salaries:" . $salariesByRank["CLAsst"];
+                echo "<h3>Total of $year Clinical Associate Salaries:" . $salariesByRank["CLAssc"];
                 //disconnect from db
                 $db = null;
             } catch(PDOException $e) {

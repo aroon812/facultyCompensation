@@ -19,7 +19,7 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
-  
+
   <div class="navbar">
     <a href="../../../index.html">Home</a>
     <a href="../../current.html">Current</a>
@@ -42,12 +42,37 @@
       </div>
     </div> 
   </div>
-  <!-- Add your site or application content here -->
-  <h1 class="pagetitle">Update Employee</h1>
+
+  <h1 class="pagetitle">Update Employee Adjustments</h1>
+
+  <?php session_start(); ?>
+	<form action="./MSG/updateAdjEmpMsg.php" method="post">
+		<fieldset>
+			<legend>Update Employee Adjustment</legend>
+				
+			Please fill out the following information to update the database.<br><br>
+			<?php				
+                $year = $_POST['year'];
+                $upsID = $_POST['upsID'];
+                $adjID = $_POST['adjID'];
+
+                echo 
+                "
+                Year:<br> 
+                <input type = 'text' name = 'year' value='$year' required autofocus readonly><br>
+                
+                UPS ID:<br>
+                <input type = 'text' name = 'upsID' value='$upsID' required autofocus readonly><br>
+                
+                Adj ID:<br>
+                <input type = 'text' name = 'adjID' value='$adjID' required><br>
+
+                <input type = 'submit' name = 'submit' value='Update Employee Adjustment'>
+                ";
+			?>			
+		</fieldset>
+	</form>
 
 
-
-
- 
 </body>
 </html>

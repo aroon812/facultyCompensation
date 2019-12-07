@@ -6,7 +6,7 @@ drop table if exists SalaryAdjustments;
 drop table if exists EmployeeAdjustments;
 drop table if exists EmployeePositionInformationByYear;
 Create table Department(
-	deptID Text Primary Key check(length(deptID)<=4),
+	deptID Integer Primary Key check(length(deptID)<=4),
 	deptName Text Unique Not Null);
 Create table Employee(
 	upsID Integer Primary Key,

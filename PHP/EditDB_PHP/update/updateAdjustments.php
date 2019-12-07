@@ -19,7 +19,7 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
-  
+
   <div class="navbar">
     <a href="../../../index.html">Home</a>
     <a href="../../current.html">Current</a>
@@ -43,12 +43,40 @@
     </div> 
   </div>
 
-  <!-- Add your site or application content here -->
-  <h1 class="pagetitle">Delete Adjustments</h1>
-  
+  <h1 class="pagetitle">Update Salary Adjustment</h1>
+
+  <?php session_start(); ?>
+	<form action="./MSG/updateAdjustmentsMsg.php" method="post">
+		<fieldset>
+			<legend>Update Adjustment</legend>
+				
+			Please fill out the following information to update the database.<br><br>
+			<?php				
+                $adjID = $_POST['adjID'];
+                $adjVal = $_POST['adjVal'];
+                $operation = $_POST['operation'];
+                $description = $_POST['description'];
+
+                echo 
+                "
+                Adj ID:<br> 
+                <input type = 'text' name = 'adjID' value='$adjID' required autofocus readonly><br>
+                
+                Adj Value:<br>
+                <input type = 'text' name = 'adjVal' value='$adjVal' required><br>
+                
+                Operation:<br>
+                <input type = 'text' name = 'operation' value='$operation' required><br>
+                
+                Description:<br>
+                <input type = 'text' name = 'description' value='$description' required><br>
+
+                <input type = 'submit' name = 'submit' value='Update Salary Adjustment'>
+                ";
+			?>			
+		</fieldset>
+	</form>
 
 
-
-  
 </body>
 </html>

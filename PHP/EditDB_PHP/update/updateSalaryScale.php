@@ -19,7 +19,7 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
-  
+
   <div class="navbar">
     <a href="../../../index.html">Home</a>
     <a href="../../current.html">Current</a>
@@ -43,9 +43,35 @@
     </div> 
   </div>
 
-  <!-- Add your site or application content here -->
-  <h1 class="pagetitle">Update Employee Adjustments </h1>
+  <h1 class="pagetitle">Update SalaryScale</h1>
 
+  <?php session_start(); ?>
+	<form action="./MSG/updateSalaryScaleMsg.php" method="post">
+		<fieldset>
+			<legend>Update Salary Scale</legend>
+				
+			Please fill out the following information to update the database.<br><br>
+			<?php				
+                $rank = $_POST['rank'];
+                $step = $_POST['step'];
+                $baseSalary = $_POST['baseSalary'];
+
+                echo 
+                "
+                Rank:<br> 
+                <input type = 'text' name = 'rank' value='$rank' required autofocus readonly><br>
+                
+                Step:<br>
+                <input type = 'text' name = 'step' value='$step' required autofocus readonly><br>
+                
+                Base Salary:<br>
+                <input type = 'text' name = 'baseSalary' value='$baseSalary' required><br>
+
+                <input type = 'submit' name = 'submit' value='Update Salary Scale'>
+                ";
+			?>			
+		</fieldset>
+	</form>
 
 
 </body>

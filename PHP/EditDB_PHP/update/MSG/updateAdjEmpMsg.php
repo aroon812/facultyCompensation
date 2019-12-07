@@ -39,24 +39,16 @@
     </div>
 
     <article>
-        <h3>Update Employee Information by Year:</h3>
+        <h3>Update Employee Adjustment:</h3>
         Year:
         <?php echo $_POST["year"]; ?><br>
         UPS ID:
         <?php echo $_POST["upsID"]; ?><br>
-        Position Number:
-        <?php echo $_POST["positionNumber"]; ?><br>
-        Include Employee Next Year:
-        <?php echo $_POST["includeNext"]; ?> <br>
-        Rank:
-        <?php echo $_POST["rank"]; ?> <br>
-        Step:
-        <?php echo $_POST["step"]; ?> <br>
-        Step Year:
-        <?php echo $_POST["stepYear"]; ?> <br><br>
+        Adj ID:
+        <?php echo $_POST["adjID"]; ?> <br>
     </article>
         <?php
-        try{
+            try {
             //path to the SQLite database file
             $db_file = './../../../../DB/bigTuba.db';
             //open connection to the airport database file
@@ -65,14 +57,10 @@
             //set errormode to use exceptions
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $query_str = $db->prepare("UPDATE EmployeePositionInformationByYear SET year = :year, includeNext = :includeNext, positionNumber = :positionNumber, rank = :rank, step = :step, stepYear = :stepYear where year = :year and upsID = :upsID");
+            $query_str = $db->prepare("UPDATE EmployeeAdjustments SET year = :year, upsID = :upsID, adjID = :adjID where year= :year and upsID = :upsID");
             $query_str->bindParam(':year', $_POST["year"]);
             $query_str->bindParam(':upsID', $_POST["upsID"]);
-            $query_str->bindParam(':positionNumber', $_POST["positionNumber"]);
-            $query_str->bindParam(':includeNext', $_POST["includeNext"]);
-            $query_str->bindParam(':rank', $_POST["rank"]);
-            $query_str->bindParam(':step', $_POST["step"]);
-            $query_str->bindParam(':stepYear', $_POST["stepYear"]);
+            $query_str->bindParam(':adjID', $_POST["adjID"]);
             if ($query_str->execute()){
                     echo "Success!<br>";
             }
@@ -81,7 +69,7 @@
                 die('Exception : '.$e->getMessage());
             }
         ?>
-        <form action="./../../../showEmpInfoYear.php">
+        <form action="./../../../showAdjEmp.php">
             <button type="submit">Return to View</button>
         </form>
 </body>

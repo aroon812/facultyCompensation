@@ -9,7 +9,7 @@ function findTotalSalary($db, $upsID, $year){
               foreach ($adjustmentIDs as $adjustmentID){
                 $adjustment_result = $db->query("select * from SalaryAdjustments where adjID = $adjustmentID");
                 $adjustment = $adjustment_result->fetch();
-                if ($adjustment["operation"] == "*"){
+                if ($adjustment["operation"] == "x"){
                   $baseSalary *= $adjustment["adjVal"];
                 }
               }

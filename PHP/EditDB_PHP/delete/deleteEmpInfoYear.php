@@ -60,6 +60,7 @@
             $db_file = './../../../DB/bigTuba.db';
             //open connection to the airport database file
             $db = new PDO('sqlite:' . $db_file);
+            $db->exec( 'PRAGMA foreign_keys = ON;' );
             //set errormode to use exceptions
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

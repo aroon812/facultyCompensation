@@ -39,24 +39,20 @@
     </div>
 
     <article>
-        <h3>Update Employee Information by Year:</h3>
-        Year:
-        <?php echo $_POST["year"]; ?><br>
+        <h3>Update Employee:</h3>
         UPS ID:
         <?php echo $_POST["upsID"]; ?><br>
-        Position Number:
-        <?php echo $_POST["positionNumber"]; ?><br>
-        Include Employee Next Year:
-        <?php echo $_POST["includeNext"]; ?> <br>
-        Rank:
-        <?php echo $_POST["rank"]; ?> <br>
-        Step:
-        <?php echo $_POST["step"]; ?> <br>
-        Step Year:
-        <?php echo $_POST["stepYear"]; ?> <br><br>
+        Last Name:
+        <?php echo $_POST["lastName"]; ?><br>
+        First Name:
+        <?php echo $_POST["firstName"]; ?> <br>
+        Type:
+        <?php echo $_POST["type"]; ?> <br>
+        Department:
+        <?php echo $_POST["dept"]; ?> <br>
     </article>
         <?php
-        try{
+        try {
             //path to the SQLite database file
             $db_file = './../../../../DB/bigTuba.db';
             //open connection to the airport database file
@@ -65,23 +61,21 @@
             //set errormode to use exceptions
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $query_str = $db->prepare("UPDATE EmployeePositionInformationByYear SET year = :year, includeNext = :includeNext, positionNumber = :positionNumber, rank = :rank, step = :step, stepYear = :stepYear where year = :year and upsID = :upsID");
-            $query_str->bindParam(':year', $_POST["year"]);
+            $query_str = $db->prepare("UPDATE Employee SET upsID = :upsID, lastName = :lastName, firstName = :firstName, type = :type, dept = :dept where upsID = :upsID");
             $query_str->bindParam(':upsID', $_POST["upsID"]);
-            $query_str->bindParam(':positionNumber', $_POST["positionNumber"]);
-            $query_str->bindParam(':includeNext', $_POST["includeNext"]);
-            $query_str->bindParam(':rank', $_POST["rank"]);
-            $query_str->bindParam(':step', $_POST["step"]);
-            $query_str->bindParam(':stepYear', $_POST["stepYear"]);
+            $query_str->bindParam(':lastName', $_POST["lastName"]);
+            $query_str->bindParam(':firstName', $_POST["firstName"]);
+            $query_str->bindParam(':type', $_POST["type"]);
+            $query_str->bindParam(':dept', $_POST["dept"]);
             if ($query_str->execute()){
                     echo "Success!<br>";
             }
         }
-            catch(PDOException $e) {
-                die('Exception : '.$e->getMessage());
-            }
+        catch(PDOException $e) {
+            die('Exception : '.$e->getMessage());
+        }
         ?>
-        <form action="./../../../showEmpInfoYear.php">
+        <form action="./../../../showEmployees.php">
             <button type="submit">Return to View</button>
         </form>
 </body>

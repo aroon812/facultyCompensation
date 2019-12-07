@@ -10,7 +10,7 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
-  <link rel="stylesheet" href="../../../CSS/main.css">
+  <link rel="stylesheet" href="./../CSS/main.css">
 
   <meta name="theme-color" content="#fafafa">
 </head>
@@ -30,7 +30,7 @@
     <a href="../../adjustments.html"> Adjustments</a>
     <a href="../../salaryScale.html"> Salary Scale</a>
     <a href="../../adjEmp.html"> EmployeeAdjustments</a>
-    <a href="../../empInfoYear.html">EmployeeInformationByYear</a>
+    <a href="../..empInfoYear.html">EmployeeInformationByYear</a>
     <div class="dropdown">
       <button class="dropbtn">Edit Data 
         <i class="fa fa-caret-down"></i>
@@ -43,11 +43,45 @@
     </div> 
   </div>
 
-  <!-- Add your site or application content here -->
-  <h1 class="pagetitle">Delete Employee Information by Year</h1>
-  
+  <h1 class="pagetitle">Past Budgets</h1>
 
 
+<?php
+    $db_file = '../DB/bigTuba.db';
+    $db = new PDO('sqlite:' . $db_file);
+
+    //set errormode to use exceptions
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $query_str = $db->prepare("select max(year) as year from EmployeePositionInformationByYear");
+        
+        if ($query_str->execute()){
+            $i = 0;
+            $resultYear = $db->query("select max(year) as year from EmployeePositionInformationByYear");
+            foreach ($resultYear as $row)
+            {
+              $result= $row['year'];
+            } 
+           
+            $actualMin =$result-1;
+        }
+        
+        
+?>
+
+<form action="./showPast.php" method="post">
+  <fieldset>
+    <legend>See Past Budgets</legend>
+    
+    <br><br>
+    
+    Enter a Year:<br> 
+    <?php
+        echo "<input type = 'number' min='1950' max='$actualMin' name = 'year' placeholder='year' required autofocus><br>";
+    
+     ?>
+    <input type = "submit" name = "submit" value="Show Past Report">
+  </fieldset>
+</form>
 
 </body>
 </html>

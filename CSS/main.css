@@ -1,67 +1,38 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f7;
   }
   
   .navbar {
     overflow: hidden;
     background-color: #5D0E07;
+
+    z-index:1; /*no overlap*/
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0; /* required */
   }
   
   .navbar a {
     float: left;
     font-size: 16px;
-    color: white;
+    color: #f5f5f7;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
   }
   
-  .dropdown {
-    float: left;
-    overflow: hidden;
-  }
   
-  .dropdown .dropbtn {
-    font-size: 16px;  
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-  }
-  
-  .navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: white;
+  .navbar a:hover {
+    background-color: #f5f5f7;
     color: #5D0E07;
   }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    float: none;
+
+  a.active {
+    background-color: #f5f5f7;
     color: #5D0E07;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
   }
-  
-  .dropdown-content a:hover {
-    background-color: #ddd;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
+
 
   .pagetext {
     padding-left: 25px; 
@@ -85,4 +56,51 @@ body {
 
   table, tr, td {
     border: 1px solid black;
+  }
+
+  #container {
+    width:100%;
+  }
+
+  #left {
+    float:left;
+    width: 33%;
+    display: block;
+    text-align: left;
+    padding: auto;
+  }
+  #right{
+    float: right;
+    width: 33%;
+    display: inline-block;
+    text-align: left;
+    padding: auto;
+
+  }
+  #center{
+    margin:0 auto;
+    width: 33%;
+    display: inline-block;
+    text-align: center;
+    border-left: 4px solid #5D0E07;
+    border-right: 4px solid #5D0E07;
+  }
+
+  .sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    padding-top: 40px;
+    top: 0;
+  }
+
+  fieldset {
+    display: block;
+  }
+
+  textarea {
+    display: block;
+    height: 500px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }

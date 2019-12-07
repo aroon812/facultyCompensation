@@ -12,30 +12,21 @@
 		<link rel="stylesheet" href="../CSS/main.css">
 		
 		<meta name="theme-color" content="#fafafa">
-	</head>
+	</head> 
 	
 	<body>
 		<div class="navbar">
 			<a href="../index.html">Home</a>
-			<a href="./current.html">Current</a>
-			<a href="./past.html">Past</a>
-			<a href="./projected.html">Projected</a>
-			<a href="./departments.html"> Departments</a>
-			<a href="./employees.html"> Employees</a>
-			<a href="./adjustments.html"> Adjustments</a>
-			<a href="./salaryScale.html"> Salary Scale</a>
-			<a href="./adjEmp.html"> EmployeeAdjustments</a>
-			<a href="./empInfoYear.html">EmployeeInformationByYear</a>
-			<div class="dropdown">
-			<button class="dropbtn">Edit Data 
-				<i class="fa fa-caret-down"></i>
-			</button>
-				<div class="dropdown-content">
-					<a href="./add.html">add</a>
-					<a href="./update.html">update</a>
-					<a href="./delete.html">delete</a>
-				</div>
-			</div> 
+			<a href="./showCurrent.php">Current</a>
+			<a href="../HTML/past.html">Past</a>
+			<a href="../HTML/projected.html">Projected</a>
+			<a href="./showDepartments.php"> Departments</a>
+			<a href="./showEmployees.php"> Employees</a>
+			<a href="./showAdjustments.php"> Adjustments</a>
+			<a href="./showSalaryScale.php"> Salary Scale</a>
+			<a href="./showAdjEmp.php"> EmployeeAdjustments</a>
+			<a href="./showEmpInfoYear.php">EmployeeInformationByYear</a>
+			<a class= "active" href="../HTML/DBAccess.html">SQL Editor</a>
 		</div>
 		<article>
 			<br> 
@@ -53,6 +44,7 @@
 				try {
 					//open connection to the airport database file
 					$db = new PDO('sqlite:' . $db_file);
+					$db->exec( 'PRAGMA foreign_keys = ON;' );
 					//set errormode to use exceptions
 					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 					$query_str = $_POST["query"];

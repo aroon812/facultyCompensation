@@ -64,6 +64,7 @@
                 try {
                     //open connection to the airport database file
                     $db = new PDO('sqlite:' . $db_file);
+                    $db->exec( 'PRAGMA foreign_keys = ON;' );
                     //set errormode to use exceptions
                     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     
@@ -84,6 +85,8 @@
                     
                         //open connection to the airport database file
                         $db = new PDO('sqlite:' . $db_file);
+                        $db->exec( 'PRAGMA foreign_keys = ON;' );
+
               
                         //set errormode to use exceptions
                         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -107,7 +110,32 @@
                         //disconnect from db
                         $db = null;
                     } catch(PDOException $e) {
-                        die('Exception : '.$e->getMessage());
+                      $message = $e->getMessage();
+                      if (strpos($message, "UNIQUE")){
+                          echo "
+                            <script>
+                            alert('Unique constraint failed!');
+                            window.location = './../../showEmployees.php';
+                            </script>
+                            ";
+                      } 
+                      elseif (strpos($message, "CHECK")){
+                        echo "
+                          <script>
+                          window.location = './../../showEmployees.php';
+                          alert('Check constraint failed!');
+                          </script>
+                          ";
+                      } 
+                      elseif (strpos($message, "FOREIGN")){
+                        echo "
+                          <script>
+                          window.location = './../../showEmployees.php';
+                          alert('Foreign key constraint failed!');
+                          </script>
+                          ";
+                      }                     
+                      die();        
                     }
                 ?>
 	</article>

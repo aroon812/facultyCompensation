@@ -1,9 +1,10 @@
-INSERT INTO Employee VALUES ('2.0','lukas ','aaron','T','1.0');
+
 INSERT INTO Department VALUES ('1.0','A');
+INSERT INTO Employee VALUES ('2.0','lukas ','aaron','T','1.0');
 INSERT INTO SalaryScale VALUES ('Assc','6.0','1350.0');
 INSERT INTO EmployeeAdjustments VALUES ('2021.0','2.0',0);
-INSERT INTO Employee VALUES ('3.0','brody','lukas ','T','1.0');
 INSERT INTO Department VALUES ('1.0','A');
+INSERT INTO Employee VALUES ('3.0','brody','lukas ','T','1.0');
 INSERT INTO SalaryScale VALUES ('Full','4.0','1798.0');
 INSERT INTO EmployeePositionInformationByYear VALUES ('2021.0','3.0','11.0','yes','Full','4.0','6.0');
 INSERT INTO EmployeeAdjustments VALUES ('2021.0','3.0',1);
