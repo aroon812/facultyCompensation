@@ -21,30 +21,63 @@
   <![endif]-->
   
   <div class="navbar">
-    <a href="../../../index.html">Home</a>
-    <a href="../../current.html">Current</a>
-    <a href="../../past.html">Past</a>
-    <a href="../../projected.html">Projected</a>
-    <a href="../../departments.html"> Departments</a>
-    <a href="../../employees.html"> Employees</a>
-    <a href="../../adjustments.html"> Adjustments</a>
-    <a href="../../salaryScale.html"> Salary Scale</a>
-    <a href="../../adjEmp.html"> EmployeeAdjustments</a>
-    <a href="../../empInfoYear.html">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="../../add.html">add</a>
-        <a href="../../update.html">update</a>
-        <a href="../../delete.html">delete</a>
-      </div>
-    </div> 
-  </div>
+      <a href="./../../../index.html">Home</a>
+      <a href="./../../../PHP/showCurrent.php">Current</a>
+      <a href="./../../../PHP/past.php">Past</a>
+      <a href="./../../../PHP/projected.php">Projected</a>
+      <a href="./../../../PHPshowDepartments.php"> Departments</a>
+      <a href="./../../../PHP/showEmployees.php"> Employees</a>
+      <a href="./../../../PHP/showAdjustments.php"> Adjustments</a>
+      <a href="./../../../PHP/showSalaryScale.php"> Salary Scale</a>
+      <a class= "active" href="./../../../PHP/showAdjEmp.php"> EmployeeAdjustments</a>
+      <a href="./../../../PHP/showEmpInfoYear.php">EmployeeInformationByYear</a>
+      <a href="./../../DBAccess.html">SQL Editor</a>
+    </div>
 
-  <h1 class="pagetitle">Add Employee Adjustment</h1>
+    <div id="container">
 
+        <div id="left" class="sticky">
+          <p>
+            <h2>Employee Adjustments</h2>
+            This table holds data about the adjustments for faculty and employees compensation for a given year.
+            <h3>Column Value Descriptions:</h3>
+            <h4>Year:</h4>
+            - The year in which the adjustments are active.
+            <br>
+            - Primary Key
+            <br>
+            - Foreign Key referencing Employee Position Information by Year
+            <h4>UPS ID:</h4>
+            - The number that corresponds with a Puget Sound faculty member.
+            <br>
+            - Primary Key
+            <br>
+            - Foreign Key referencing Employee Position Information by Year
+            <h4>Adjustment ID:</h4>
+            - The number that corresponds with an adjustment operation.
+            <br>
+            - Primary Key
+            <br>
+            - Foreign Key referencing Adjustments
+          </p>
+        </div>
+        
+        <div id="right" class="sticky">
+          <p>
+            <h3>Action Descriptions:</h3>
+            <h4>Add:</h4>
+            The add button will allow you to add an employee adjustment to the table.
+          <br>
+          - All fields must be unique
+          <br>
+        - UPS ID and year must exist as a combination in Employee Information by Year. 
+          <br>
+          - Adjustment ID must exist in Salary Adjustments.
+        </p>
+        </div>
+        
+        <div id="center">
+          <div class="sqlBorder">
   <!--
 <form action="./../../../PHP/EditDB_PHP/add/addEmployeeAdjustment.php" method="POST">
     Year: <input type="text" name="year" required><br>
@@ -69,12 +102,14 @@
       adjID:<br>
       <input type = "text" name = "adjID" placeholder="adjustment ID" required><br>
       
-      <input type = "submit" name = "submit" value="Add Employee">
+      <input type = "submit" name = "submit" value="Add Employee Adjustment">
     </fieldset>
   </form>
 
 
-
+</div>
+</div>
+</div>
 
 </body>
 </html>

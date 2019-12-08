@@ -19,55 +19,74 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
-
   <div class="navbar">
-    <a href="../../../index.html">Home</a>
-    <a href="../../current.html">Current</a>
-    <a href="../../past.html">Past</a>
-    <a href="../../projected.html">Projected</a>
-    <a href="../../departments.html"> Departments</a>
-    <a href="../../employees.html"> Employees</a>
-    <a href="../../adjustments.html"> Adjustments</a>
-    <a href="../../salaryScale.html"> Salary Scale</a>
-    <a href="../../adjEmp.html"> EmployeeAdjustments</a>
-    <a href="../../empInfoYear.html">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="../../add.html">add</a>
-        <a href="../../update.html">update</a>
-        <a href="../../delete.html">delete</a>
+    <a href="./../../../index.html">Home</a>
+    <a href="./../../showCurrent.php">Current</a>
+    <a href="./../../past.php">Past</a>
+    <a href="./../../projected.php">Projected</a>
+    <a class= "active" href="./../../showDepartments.php"> Departments</a>
+    <a href="./../../showEmployees.php"> Employees</a>
+    <a href="./../../showAdjustments.php"> Adjustments</a>
+    <a href="./../../showSalaryScale.php"> Salary Scale</a>
+    <a href="./../../showAdjEmp.php"> EmployeeAdjustments</a>
+    <a href="./../../showEmpInfoYear.php">EmployeeInformationByYear</a>
+    <a href="./../../../HTML/DBAccess.html">SQL Editor</a>
+  </div>
+  <div id="left" class="sticky">
+  <p>
+    <h2>Departments</h2>
+    This table holds data about departments.
+    <h3>Column Value Descriptions:</h3>
+    <h4>Department ID:</h4>
+    - The number that corresponds with a department.
+    <br>
+    - Primary Key
+    <h4>Department Name:</h4>
+    - The name of a department.
+  </p>
+</div>
+
+<div id="right" class="sticky">
+  <p>
+    <h3>Action Descriptions:</h3>
+    <h4>Update:</h4>
+    The update button will allow you to modify the data for the row that was selected in the table.
+    <br>
+    - Primary keys cannot be modified
+    <br>
+    - Foriegn keys should be modified with caution.
+  </p>
+</div>
+
+<div id="center">
+<div class="sqlBorder">
+        <?php session_start(); ?>
+          <form action="./MSG/updateDepartmentMsg.php" method="post">
+		          <fieldset>
+        
+			            <legend>Update Department</legend>
+				
+			            Please fill out the following information to update the database.<br><br>
+                <?php				
+                  $deptID = $_POST['deptID'];
+                  $deptName = $_POST['deptName'];
+                  echo 
+                  "
+                  Dept ID:<br> 
+                  <input type = 'text' name = 'deptID' value='$deptID' required autofocus readonly><br>
+                  
+                  Department:<br>
+                  <input type = 'text' name = 'deptName' value='$deptName' required> <br>
+
+                  <input type = 'submit' name = 'submit' value='Update Department'>
+                  ";
+			          ?>	
+		          </fieldset>
+          </form>
       </div>
-    </div> 
   </div>
 
-  <h1 class="pagetitle">Update Department</h1>
-
-  <?php session_start(); ?>
-	<form action="./MSG/updateDepartmentMsg.php" method="post">
-		<fieldset>
-			<legend>Update Department</legend>
-				
-			Please fill out the following information to update the database.<br><br>
-			<?php				
-                $deptID = $_POST['deptID'];
-                $deptName = $_POST['deptName'];
-                echo 
-                "
-                UPS ID:<br> 
-                <input type = 'text' name = 'deptID' value='$deptID' required autofocus readonly><br>
-                
-                Department:<br>
-                <input type = 'text' name = 'deptName' value='$deptName' required> <br>
-
-                <input type = 'submit' name = 'submit' value='Update Department'>
-                ";
-			?>			
-		</fieldset>
-	</form>
-
+</div>
 
 </body>
 </html>

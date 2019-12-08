@@ -20,33 +20,89 @@
   <![endif]-->
   <div class="navbar">
     <a href="../index.html">Home</a>
-    <a href="./showCurrent.php">Current</a>
-    <a href="../HTML/past.html">Past</a>
-    <a href="../HTML/projected.html">Projected</a>
+    <a class="active" href="./showCurrent.php">Current</a>
+    <a href="./past.php">Past</a>
+    <a href="./projected.php">Projected</a>
     <a href="./showDepartments.php"> Departments</a>
     <a href="./showEmployees.php"> Employees</a>
     <a href="./showAdjustments.php"> Adjustments</a>
     <a href="./showSalaryScale.php"> Salary Scale</a>
     <a href="./showAdjEmp.php"> EmployeeAdjustments</a>
     <a href="./showEmpInfoYear.php">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="./add.html">add</a>
-        <a href="./update.html">update</a>
-        <a href="./delete.html">delete</a>
-      </div>
-    </div> 
+    <a href="../HTML/DBAccess.html">SQL Editor</a>
   </div>
 
   <!-- Add your site or application content here -->
-  <h1 class="pagetitle">Current</h1>
-  <p class="pagetext">(First Name, Last Name, Base Salary)<br>
-    <?php
-            include "totalSalary.php";
 
+  <div id="container">
+
+    <div id="left" class="sticky">
+      <p>
+        <h2>Current</h2>
+        This table holds the base and adjusted salaries of each faculty member for the current fiscal year. On the right, we calculate
+        the total budget on salaries for a fiscal year and break down the salary spending by type of professor as well as by rank of professor. 
+        <h3>Column Value Descriptions:</h3>
+        <h4>First Name:</h4>
+        - The first name of a faculty member.
+        <h4>Last Name:</h4>
+        - The last name of a faculty member.
+        <h4>Base Salary:</h4>
+        - The compensation for an employee at a certain rank and step without adjustments.
+        <h4>Total Salary:</h4>
+        - The compensation for an employee at a certain rank and step with adjustments.
+      </p>       
+    </div>
+
+    <div id="right" class="sticky">
+    <h3>Current Report Stats</h3>
+    <p>
+      This is a breakdown of the current table numbers organized by both "Type" and by "Rank".
+    </p>
+    <h4>Breakdown Tables:</h4>
+    <div id="container">
+      <div id="right50">
+      <?php
+        include "totalSalary.php";
+        $db_file = '../DB/bigTuba.db';
+                      $db = new PDO('sqlite:' . $db_file);
+                      $salariesByRank = findTotalRankSalaries($db);
+                      echo "<table align='left'>";
+                      echo "<tr><td>Salary By Rank</td></tr>";
+                      echo "<tr><td>" . "Assistant" . "</td><td>" . $salariesByRank['Asst'] . "</td></tr>";
+                      echo "<tr><td>" . "Associate" . "</td><td>" . $salariesByRank['Assc'] . "</td></tr>";
+                      echo "<tr><td>" . "Full" . "</td><td>" . $salariesByRank['Full'] . "</td></tr>";
+                      echo "<tr><td>" . "Instructor" . "</td><td>" . $salariesByRank['Inst'] . "</td></tr>";
+                      echo "<tr><td>" . "Clinical Assitant" . "</td><td>" . $salariesByRank['CLAsst'] . "</td></tr>";
+                      echo "<tr><td>" . "Clinical Associate" . "</td><td>" . $salariesByRank['CLAssc'] . "</td></tr>";
+                      echo "</table>";
+                      $db = null;
+                      ?>
+      </div>
+      <div id="left50">
+      <?php
+
+      $db_file = '../DB/bigTuba.db';
+                    $db = new PDO('sqlite:' . $db_file);
+                    $salariesByType = findTotalTypeSalaries($db);
+                    echo "<table align='right'>";
+                    echo "<tr><td>Salary By Type</td></tr>";
+                    echo "<tr><td>" . "Tenure" . "</td><td>" . $salariesByType['T'] . "</td></tr>";
+                    echo "<tr><td>" . "Instructor" . "</td><td>" . $salariesByType['I'] . "</td></tr>";
+                    echo "<tr><td>" . "Clinical" . "</td><td>" . $salariesByType['CL'] . "</td></tr>";
+                    echo "<tr><td>" . "Shared" . "</td><td>" . $salariesByType['S'] . "</td></tr>";
+                    echo "<tr><td>" . "Visiting Assistant" . "</td><td>" . $salariesByType['VAP'] . "</td></tr>";
+                    echo "<tr><td>" . "Visiting Instructor" . "</td><td>" . $salariesByType['VIN'] . "</td></tr>";
+                    echo "<tr><td>" . "Emeritus" . "</td><td>" . $salariesByType['E'] . "</td></tr>";
+                    echo "</table>";
+                    $db = null;
+                    ?>
+      </div>
+      </div>
+    </div>
+
+    <div id="center">
+    <h2>Current Report</h2>
+    <?php
             //path to the SQLite database file
             $db_file = '../DB/bigTuba.db';
         
@@ -62,10 +118,7 @@
                 if ($query_str->execute()){
                     $i = 0;
                     $totalSalaries = 0;
-                    $salariesByType = array("T"=>0,"I"=>0,"CL"=>0,"S"=>0,"VAP"=>0,"VIN"=>0,"E"=>0);
-                    $salariesByRank = array("Inst"=>0,"Asst"=>0,"Assc"=>0,"Full"=>0,"CLAsst"=>0,"CLAssc"=>0);
                     $result_set = $db->query("with A as (select max(year) from EmployeePositionInformationByYear) select firstName, lastName, baseSalary, year, upsID, rank, type from SalaryScale natural join EmployeePositionInformationByYear natural join Employee where year in A");
-                    
                     echo "<table align='center'>";
                     echo "<tr><td>firstName</td><td>lastName</td><td>baseSalary</td><td>totalSalary</td></tr>";
                     while($row = $result_set->fetch()) {
@@ -75,71 +128,22 @@
                         $totalSalary = findTotalSalary($db, $row['upsID'], $row['year']);
                         echo "<tr><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['baseSalary'] ."</td><td>". $totalSalary . "</td></tr>";
                         $totalSalaries += $totalSalary;
-                        if($row['rank']=='Inst'){
-                            $salariesByRank["Inst"]+=$totalSalary;
-                        }
-                        else if ($row['rank']=='Assc'){
-                          $salariesByRank["Assc"]+=$totalSalary;
-                        }
-                        else if ($row['rank']=='Asst'){
-                          $salariesByRank["Asst"]+=$totalSalary;
-                        }
-                        else if ($row['rank']=='Full'){
-                          $salariesByRank["Full"]+=$totalSalary;
-                        }
-                        else if ($row['rank']=='CLAsst'){
-                          $salariesByRank["CLAsst"]+=$totalSalary;
-                        }
-                        else {
-                          $salariesByRank["CLAssc"]+=$totalSalary;
-                        }
-                        if($row['type']=='T'){
-                          $salariesByType["T"]+=$totalSalary;
-                        }
-                        else if ($row['type']=='I'){
-                          $salariesByType["I"]+=$totalSalary;
-                        }
-                        else if ($row['type']=='CL'){
-                          $salariesByType["CL"]+=$totalSalary;
-                        }
-                        else if ($row['type']=='S'){
-                          $salariesByType["S"]+=$totalSalary;
-                        }
-                        else if ($row['type']=='E'){
-                          $salariesByType["E"]+=$totalSalary;
-                        }
-                        else if (strpos($row['type'],'VIN')){
-                          $salariesByType["VIN"]+=$totalSalary;
-                        }
-                        else {
-                          $salariesByType["VAP"]+=$totalSalary;
-                        }
-
                       }
                     }
-                    echo "</table>";
+                    echo "</table>";          
                 }
-                //$sals=$salariesByType["T"];
-                echo "<h3>Total of Current Salaries: $totalSalaries";
-                echo "<h3>Total of Tenure Salaries:" . $salariesByType["T"];
-                echo "<h3>Total of Instructor Salaries:" . $salariesByType["I"];
-                echo "<h3>Total of Clinical Salaries:" . $salariesByType["CL"];
-                echo "<h3>Total of Shared Salaries:" .  $salariesByType["S"];
-                echo "<h3>Total of Visiting Assitant Salaries:" . $salariesByType["VAP"];
-                echo "<h3>Total of Visiting Instructor Salaries:" . $salariesByType["VIN"];
-                echo "<h3>Total of Emeritus Salaries:" . $salariesByType["E"];
-                echo "<h3>Total of Current Assistant Salaries:" . $salariesByRank["Asst"];
-                echo "<h3>Total of Current Associate Salaries:" . $salariesByRank["Assc"];
-                echo "<h3>Total of Current Full Salaries:" . $salariesByRank["Full"];
-                echo "<h3>Total of Current Instructor Salaries:" . $salariesByRank["Inst"];
-                echo "<h3>Total of Current Clinical Assitant Salaries:" . $salariesByRank["CLAsst"];
-                echo "<h3>Total of Current Clinical Associate Salaries:" . $salariesByRank["CLAssc"];
+
                 //disconnect from db
                 $db = null;
             } catch(PDOException $e) {
                 die('Exception : '.$e->getMessage());
             }
         ?>
+    </div>
+
+  </div>
+  
+    
         </p>
 </body>
 </html>

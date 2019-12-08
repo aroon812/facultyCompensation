@@ -19,26 +19,17 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
   <div class="navbar">
-    <a href="../index.html">Home</a>
+  <a href="../index.html">Home</a>
     <a href="./showCurrent.php">Current</a>
-    <a href="../HTML/past.html">Past</a>
-    <a href="../HTML/projected.html">Projected</a>
+    <a class= "active" href="./past.php">Past</a>
+    <a href="./projected.php">Projected</a>
     <a href="./showDepartments.php"> Departments</a>
     <a href="./showEmployees.php"> Employees</a>
     <a href="./showAdjustments.php"> Adjustments</a>
     <a href="./showSalaryScale.php"> Salary Scale</a>
     <a href="./showAdjEmp.php"> EmployeeAdjustments</a>
     <a href="./showEmpInfoYear.php">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="./add.html">add</a>
-        <a href="./update.html">update</a>
-        <a href="./delete.html">delete</a>
-      </div>
-    </div> 
+    <a href="../HTML/DBAccess.html">SQL Editor</a>
   </div>
 
   <!-- Add your site or application content here -->

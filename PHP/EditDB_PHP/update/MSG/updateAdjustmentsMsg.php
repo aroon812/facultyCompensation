@@ -15,40 +15,67 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <a href="../../../index.html">Home</a>
-        <a href="../../current.html">Current</a>
-        <a href="../../past.html">Past</a>
-        <a href="../../projected.html">Projected</a>
-        <a href="../../departments.html"> Departments</a>
-        <a href="../../employees.html"> Employees</a>
-        <a href="../../adjustments.html"> Adjustments</a>
-        <a href="../../salaryScale.html"> Salary Scale</a>
-        <a href="../../adjEmp.html"> EmployeeAdjustments</a>
-        <a href="../../empInfoYear.html">EmployeeInformationByYear</a>
-        <div class="dropdown">
-        <button class="dropbtn">Edit Data 
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="../../add.html">add</a>
-            <a href="../../update.html">update</a>
-            <a href="../../delete.html">delete</a>
-        </div>
-        </div> 
-    </div>
+<div class="navbar">
+    <a href="./../../../../index.html">Home</a>
+    <a href="./../../../showCurrent.php">Current</a>
+    <a href="./../../../past.php">Past</a>
+    <a href="./../../../projected.php">Projected</a>
+    <a href="./../../../showDepartments.php"> Departments</a>
+    <a href="./../../../showEmployees.php"> Employees</a>
+    <a class= "active" href="./../../../showAdjustments.php"> Adjustments</a>
+    <a href="./../../../showSalaryScale.php"> Salary Scale</a>
+    <a href="./../../../showAdjEmp.php"> EmployeeAdjustments</a>
+    <a href="./../../../showEmpInfoYear.php">EmployeeInformationByYear</a>
+    <a href="./../../../../HTML/DBAccess.html">SQL Editor</a>
+  </div>
+  <div id="container">
 
-    <article>
-        <h3>Update Adjustment:</h3>
-        Adj ID:
+<div id="left" class="sticky">
+  <p>
+    <h2>Adjustments</h2>
+    This table holds data about adjustment operations for faculty compensation.
+    <h3>Column Value Descriptions:</h3>
+    <h4>Adjustment ID:</h4>
+    - The number that represents the adjustment for that row.
+    <br>
+    - Primary Key
+    <h4>Adjustment Value:</h4>
+    - The value to be applied to the adjustment operation.
+    <h4>Operation:</h4>
+    - The operation that the adjustment preforms when calculating total salary.
+    <h4>Description:</h4>
+    - The summary of the adjustment including what it is used for.
+  </p>
+</div>
+
+<div id="right" class="sticky">
+  <p>
+    <h3>Action Descriptions:</h3>
+    <h4>Update:</h4>
+    The update button will allow you to modify the data for the row that was selected in the table.
+    <br>
+    - Primary keys cannot be modified
+    <br>
+    - Foriegn keys should be modified with caution.
+    <form action="./../../../showAdjustments.php">
+            <br>
+            <button type="submit">Return to View</button>
+        </form>
+</div>
+
+<div id="center">
+  <div class="sqlBorder">
+    <fieldset>
+      <legend><h3>Update Adjustment:</h3></legend>
+        Adjustment ID:
         <?php echo $_POST["adjID"]; ?><br>
-        Adj Value:
+        Adjustment Value:
         <?php echo $_POST["adjVal"]; ?><br>
         Operation:
         <?php echo $_POST["operation"]; ?> <br>
         Description:
         <?php echo $_POST["description"]; ?> <br>
-    </article>
+
         <?php
             try {
             //path to the SQLite database file
@@ -65,16 +92,43 @@
             $query_str->bindParam(':operation', $_POST["operation"]);
             $query_str->bindParam(':description', $_POST["description"]);
             if ($query_str->execute()){
-                    echo "Success!<br>";
+                    echo "<h4>Success!</h4><br>";
             }
+            echo "</fieldset>";
         }
             catch(PDOException $e) {
-                die('Exception : '.$e->getMessage());
+                $message = $e->getMessage();
+                  if (strpos($message, "UNIQUE")){
+                      echo "
+                        <script>
+                        alert('Unique constraint failed!');
+                        window.location = './../../../showAdjustments.php';
+                        </script>
+                        ";
+                  } 
+                  elseif (strpos($message, "CHECK")){
+                    echo "
+                      <script>
+                      window.location = './../../../showAdjustments.php';
+                      alert('Check constraint failed!');
+                      </script>
+                      ";
+                  } 
+                  elseif (strpos($message, "FOREIGN")){
+                    echo "
+                      <script>
+                      window.location = './../../../showAdjustments.php';
+                      alert('Foreign key constraint failed!');
+                      </script>
+                      ";
+                  }                     
+                  die();      
             }
         ?>
-        <form action="./../../../showAdjustments.php">
-            <button type="submit">Return to View</button>
-        </form>
+    </div>
+  </div>
+</div>
+</div>
 </body>
 </html>
 

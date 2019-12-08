@@ -20,39 +20,65 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
   
+    
   <div class="navbar">
-    <a href="../../../index.html">Home</a>
-    <a href="../../current.html">Current</a>
-    <a href="../../past.html">Past</a>
-    <a href="../../projected.html">Projected</a>
-    <a href="../../departments.html"> Departments</a>
-    <a href="../../employees.html"> Employees</a>
-    <a href="../../adjustments.html"> Adjustments</a>
-    <a href="../../salaryScale.html"> Salary Scale</a>
-    <a href="../../adjEmp.html"> EmployeeAdjustments</a>
-    <a href="../../empInfoYear.html">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="../../add.html">add</a>
-        <a href="../../update.html">update</a>
-        <a href="../../delete.html">delete</a>
-      </div>
-    </div> 
+    <a href="./../../../index.html">Home</a>
+    <a href="./../../showCurrent.php">Current</a>
+    <a href="./../../past.php">Past</a>
+    <a href="./../../projected.php">Projected</a>
+    <a href="./../../showDepartments.php"> Departments</a>
+    <a href="./../../showEmployees.php"> Employees</a>
+    <a href="./../../showAdjustments.php"> Adjustments</a>
+    <a class= "active" href="./../../showSalaryScale.php"> Salary Scale</a>
+    <a href="./../../showAdjEmp.php"> EmployeeAdjustments</a>
+    <a href="./../../showEmpInfoYear.php">EmployeeInformationByYear</a>
+    <a href="./../../../HTML/DBAccess.html">SQL Editor</a>
   </div>
 
-  <h1 class="pagetitle">Add Salary Scale</h1>
+  <div id="container">
 
-  <article>
-			<h3>New Salary Scale:</h3>
-			Rank:
-			<?php echo $_POST["rank"]; ?><br>
-			Step:
-			<?php echo $_POST["step"]; ?><br>
-			Base Salary:
-			<?php echo $_POST["baseSalary"]; ?><br>
+<div id="left" class="sticky">
+      <p>
+        <h2>Salary Scale</h2>
+        This table holds data about the unadjusted salary for certain levels of employment.
+        <h3>Column Value Descriptions:</h3>
+        <h4>Rank:</h4>
+        - The level of employment for an employee.
+        <br>
+        - Primary Key
+        <h4>Step:</h4>
+        - The progress of an employee in their rank.
+        <br>
+        - Primary Key
+        <h4>Base Salary:</h4>
+        - The starting compensation for an employee at a certain rank and step without adjustments.
+      </p>
+</div>
+
+<div id="right" class="sticky">
+          <p>
+            <h3>Action Descriptions:</h3>
+            <h4>Add:</h4>
+            The add button will allow you to add a salary scale to the table.
+            <br>
+            - Rank and scale must be a unique combination
+    <form action="./../../showSalaryScale.php">
+        <br>
+        <button type="submit">Return to View</button>
+    </form>
+</div>
+
+<div id="center">
+  <div class="sqlBorder">
+    <fieldset>
+    <legend><h3>New Salary Scale Info:</h3></legend>
+        Rank:
+        <?php echo $_POST["rank"]; ?><br>
+        Step:
+        <?php echo $_POST["step"]; ?><br>
+        Base Salary
+        <?php echo $_POST["baseSalary"]; ?> <br>
+
 			<?php
                 //path to the SQLite database file
                 $db_file = '../../../DB/bigTuba.db';
@@ -69,31 +95,9 @@
                     $query_str->bindParam(':step', $_POST["step"]);
                     $query_str->bindParam(':baseSalary', $_POST["baseSalary"]);
                     if ($query_str->execute()){
-                        echo "Success!<br>";
+                        echo "<h4>Success!</h4><br>";
                     }
-                    $db = new PDO('sqlite:' . $db_file);
-                    $db->exec( 'PRAGMA foreign_keys = ON;' );
-
-                    //set errormode to use exceptions
-                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    //return all passengers, and store the result set
-                    $query_str = $db->prepare("select * from SalaryScale order by rank");
-                
-                    if ($query_str->execute()){
-                        $i = 0;
-                        $result_set = $db->query("select * from SalaryScale order by rank");
-                        echo "<table align='center'>";
-                        echo "<tr><td>rank</td><td>step</td><td>baseSalary</td></tr>";
-                        while($row = $result_set->fetch()) {
-                          if ($row[$i] == NULL){
-                            echo "<tr><td>[NULL]<tr><td>";
-                            } else {
-                              echo "<tr><td>" . $row['rank'] . "</td><td>" . $row['step'] . "</td><td>" . $row['baseSalary'] . "</td></tr>";
-                            }
-                          }
-                            echo "</table>";
-                    }
-                    //disconnect from db
+                    echo "</fieldset>";
                     $db = null;
                 } catch(PDOException $e) {
                   $message = $e->getMessage();
@@ -101,14 +105,14 @@
                       echo "
                         <script>
                         alert('Unique constraint failed!');
-                        window.location = './../../showEmployees.php';
+                        window.location = './../../showSalaryScale.php';
                         </script>
                         ";
                   } 
                   elseif (strpos($message, "CHECK")){
                     echo "
                       <script>
-                      window.location = './../../showEmployees.php';
+                      window.location = './../../showSalaryScale.php';
                       alert('Check constraint failed!');
                       </script>
                       ";
@@ -116,7 +120,7 @@
                   elseif (strpos($message, "FOREIGN")){
                     echo "
                       <script>
-                      window.location = './../../showEmployees.php';
+                      window.location = './../../showSalaryScale.php';
                       alert('Foreign key constraint failed!');
                       </script>
                       ";
@@ -124,7 +128,9 @@
                   die();      
                 }
             ?>
-</article>
-
+    </div>
+  </div>
+</div>
+</div>
 </body>
 </html>

@@ -58,6 +58,7 @@ body {
     border: 1px solid black;
   }
 
+
   #container {
     width:100%;
   }
@@ -69,6 +70,7 @@ body {
     text-align: left;
     padding: auto;
   }
+
   #right{
     float: right;
     width: 33%;
@@ -77,6 +79,7 @@ body {
     padding: auto;
 
   }
+
   #center{
     margin:0 auto;
     width: 33%;
@@ -84,6 +87,39 @@ body {
     text-align: center;
     border-left: 4px solid #5D0E07;
     border-right: 4px solid #5D0E07;
+  }
+
+  #right74{
+    width: 74%;
+    display: inline-block;
+    text-align: center;
+    border-left: 4px solid #5D0E07;
+    padding: auto;
+  }
+
+  #left25 {
+    float:left;
+    width: 25%;
+    display: block;
+    text-align: left;
+    padding: auto;
+  } 
+
+  #left50 {
+    float:left;
+    width: 49%;
+    display: block;
+    text-align: left;
+    padding: auto;
+  }
+
+  #right50 {
+    float: right;
+    width: 49%;
+    display: inline-block;
+    text-align: left;
+    padding: auto;
+
   }
 
   .sticky {
@@ -99,8 +135,59 @@ body {
 
   textarea {
     display: block;
+    resize: none;
     height: 500px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
+
+  img.sqlImg {
+    border-width: 30px;
+    border-color: white;
+    border-style: solid;
+  }
+
+
+
+  div.sqlBorder {
+    display: block;
+    border-bottom: 4px solid #5D0E07;
+   
+  }
+
+  .red {
+    color: red;
+    font-size: small;
+  }
+
+  fieldset.past { 
+    display: block;
+    margin-left: 10%;
+    margin-right: 20%;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+  }
+
+  img.schema {
+    border-width: 30px;
+    border-color: white;
+    border-style: solid;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 100%;
+  }
+
+
+  .fling-minislide {width:350px; height:300px; overflow:hidden; position:relative; }
+  .fling-minislide img{ position:absolute; animation:fling-minislide 20s infinite; opacity:0; width: 100%; height: auto;}
+
+  @keyframes fling-minislide {25%{opacity:1;} 40%{opacity:0;}} 
+  .fling-minislide img:nth-child(4){animation-delay:0s;}
+  .fling-minislide img:nth-child(3){animation-delay:5s;}
+  .fling-minislide img:nth-child(2){animation-delay:10s;}
+  .fling-minislide img:nth-child(1){animation-delay:15s;}

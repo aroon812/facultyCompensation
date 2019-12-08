@@ -21,36 +21,59 @@
   <![endif]-->
   
   <div class="navbar">
-    <a href="../../../index.html">Home</a>
-    <a href="../../current.html">Current</a>
-    <a href="../../past.html">Past</a>
-    <a href="../../projected.html">Projected</a>
-    <a href="../../departments.html"> Departments</a>
-    <a href="../../employees.html"> Employees</a>
-    <a href="../../adjustments.html"> Adjustments</a>
-    <a href="../../salaryScale.html"> Salary Scale</a>
-    <a href="../../adjEmp.html"> EmployeeAdjustments</a>
-    <a href="../../empInfoYear.html">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="../../add.html">add</a>
-        <a href="../../update.html">update</a>
-        <a href="../../delete.html">delete</a>
-      </div>
-    </div> 
+    <a href="./../../../index.html">Home</a>
+    <a href="./../../showCurrent.php">Current</a>
+    <a href="./../../past.php">Past</a>
+    <a href="./../../projected.php">Projected</a>
+    <a class= "active" href="./../../showDepartments.php"> Departments</a>
+    <a href="./../../showEmployees.php"> Employees</a>
+    <a href="./../../showAdjustments.php"> Adjustments</a>
+    <a href="./../../showSalaryScale.php"> Salary Scale</a>
+    <a href="./../../showAdjEmp.php"> EmployeeAdjustments</a>
+    <a href="./../../showEmpInfoYear.php">EmployeeInformationByYear</a>
+    <a href="./../../../HTML/DBAccess.html">SQL Editor</a>
   </div>
 
-  <h1 class="pagetitle">Add Department</h1>
 
+
+  <div id="left" class="sticky">
+  <p>
+    <h2>Departments</h2>
+    This table holds data about departments.
+    <h3>Column Value Descriptions:</h3>
+    <h4>Department ID:</h4>
+    - The number that corresponds with a department.
+    <br>
+    - Primary Key
+    <h4>Department Name:</h4>
+    - The name of a department.
+  </p>
+</div>
+
+<div id="right" class="sticky">
+<p>
+          <h3>Action Descriptions:</h3>
+          <h4>Add:</h4>
+          The add button will open a form to add a new row of data to the table.
+          <br>
+          - Department ID must be unique.
+    <form action="./../../showDepartments.php">
+            <br>
+            <button type="submit">Return to View</button>
+        </form>
+  </p>
+</div>
+
+
+<div id="center">
+<div class="sqlBorder"> 
   <article>
-			<h3>New Department Info:</h3>
-			Dept ID:
-			<?php echo $_POST["deptID"]; ?><br>
-			Dept Name:
-			<?php echo $_POST["deptName"]; ?><br>
+  <fieldset>
+      <legend><h3>New Department Info:</h3></legend>
+      Dept ID:
+      <?php echo $_POST["deptID"]; ?><br>
+      Dept Name:
+      <?php echo $_POST["deptName"]; ?><br>
 			<?php
                 //path to the SQLite database file
                 $db_file = '../../../DB/bigTuba.db';
@@ -66,32 +89,9 @@
                     $query_str->bindParam(':deptID', $_POST["deptID"]);
                     $query_str->bindParam(':deptName', $_POST["deptName"]);
                     if ($query_str->execute()){
-                        echo "Success!<br>";
+                        echo "<h4>Success!</h4><br>";
                     }
-                    //open connection to the airport database file
-                $db = new PDO('sqlite:' . $db_file);
-                $db->exec( 'PRAGMA foreign_keys = ON;' );
-
-                //set errormode to use exceptions
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                //return all passengers, and store the result set
-                $query_str = $db->prepare("select * from department");
-            
-                if ($query_str->execute()){
-                    $i = 0;
-                    $result_set = $db->query("select * from department");
-                    echo "<table align='center'>";
-                    echo "<tr><td>deptID</td><td>deptName</td></tr>";
-                    while($row = $result_set->fetch()) {
-                      if ($row[$i] == NULL){
-                        echo "<tr><td>[NULL]<tr><td>";
-                      } else {
-                        echo "<tr><td>" . $row['deptID'] . "</td><td>" . $row['deptName'] . "</td></tr>";
-                      }
-                        
-                    }
-                    echo "</table>";
-                }
+                    echo "</fieldset>";
                 //disconnect from db
                 $db = null;
                 } catch(PDOException $e) {
@@ -100,14 +100,14 @@
                       echo "
                         <script>
                         alert('Unique constraint failed!');
-                        window.location = './../../showEmployees.php';
+                        window.location = './../../showDepartments.php';
                         </script>
                         ";
                   } 
                   elseif (strpos($message, "CHECK")){
                     echo "
                       <script>
-                      window.location = './../../showEmployees.php';
+                      window.location = './../../showDepartments.php';
                       alert('Check constraint failed!');
                       </script>
                       ";
@@ -115,7 +115,7 @@
                   elseif (strpos($message, "FOREIGN")){
                     echo "
                       <script>
-                      window.location = './../../showEmployees.php';
+                      window.location = './../../showDepartments.php';
                       alert('Foreign key constraint failed!');
                       </script>
                       ";
@@ -124,6 +124,8 @@
                 }
             ?>
 </article>
+</div>
+</div>
 
 </body>
 </html>

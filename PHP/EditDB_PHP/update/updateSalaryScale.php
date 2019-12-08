@@ -21,32 +21,53 @@
   <![endif]-->
 
   <div class="navbar">
-    <a href="../../../index.html">Home</a>
-    <a href="../../current.html">Current</a>
-    <a href="../../past.html">Past</a>
-    <a href="../../projected.html">Projected</a>
-    <a href="../../departments.html"> Departments</a>
-    <a href="../../employees.html"> Employees</a>
-    <a href="../../adjustments.html"> Adjustments</a>
-    <a href="../../salaryScale.html"> Salary Scale</a>
-    <a href="../../adjEmp.html"> EmployeeAdjustments</a>
-    <a href="../../empInfoYear.html">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="../../add.html">add</a>
-        <a href="../../update.html">update</a>
-        <a href="../../delete.html">delete</a>
-      </div>
-    </div> 
+    <a href="./../../../index.html">Home</a>
+    <a href="./../../showCurrent.php">Current</a>
+    <a href="./../../past.php">Past</a>
+    <a href="./../../projected.php">Projected</a>
+    <a href="./../../showDepartments.php"> Departments</a>
+    <a href="./../../showEmployees.php"> Employees</a>
+    <a href="./../../showAdjustments.php"> Adjustments</a>
+    <a class= "active" href="./../../showSalaryScale.php"> Salary Scale</a>
+    <a href="./../../showAdjEmp.php"> EmployeeAdjustments</a>
+    <a href="./../../showEmpInfoYear.php">EmployeeInformationByYear</a>
+    <a href="./../../../HTML/DBAccess.html">SQL Editor</a>
   </div>
+  <div id="container">
 
-  <h1 class="pagetitle">Update SalaryScale</h1>
+<div id="left" class="sticky">
+      <p>
+        <h2>Salary Scale</h2>
+        This table holds data about the unadjusted salary for certain levels of employment.
+        <h3>Column Value Descriptions:</h3>
+        <h4>Rank:</h4>
+        - The level of employment for an employee.
+        <br>
+        - Primary Key
+        <h4>Step:</h4>
+        - The progress of an employee in their rank.
+        <br>
+        - Primary Key
+        <h4>Base Salary:</h4>
+        - The starting compensation for an employee at a certain rank and step without adjustments.
+      </p>
+</div>
 
-  <?php session_start(); ?>
-	<form action="./MSG/updateSalaryScaleMsg.php" method="post">
+<div id="right" class="sticky">
+  <p>
+    <h3>Action Descriptions:</h3>
+    <h4>Update:</h4>
+    The update button will allow you to modify the data for the row that was selected in the table.
+    <br>
+    - Primary keys cannot be modified
+    <br>
+    - Foriegn keys should be modified with caution.
+</div>
+
+<div id="center">
+  <div class="sqlBorder">
+    <?php session_start(); ?>
+    <form action="./MSG/updateSalaryScaleMsg.php" method="post">
 		<fieldset>
 			<legend>Update Salary Scale</legend>
 				
@@ -72,7 +93,8 @@
 			?>			
 		</fieldset>
 	</form>
-
-
+  </div>
+</div>
+</div>
 </body>
 </html>

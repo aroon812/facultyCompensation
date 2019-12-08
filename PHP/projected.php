@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -22,9 +21,9 @@
     <a href="../index.html">Home</a>
     <a href="./showCurrent.php">Current</a>
     <a href="./past.php">Past</a>
-    <a href="./projected.php">Projected</a>
+    <a class= "active" href="./projected.php">Projected</a>
     <a href="./showDepartments.php"> Departments</a>
-    <a class= "active" href="./showEmployees.php"> Employees</a>
+    <a href="./showEmployees.php"> Employees</a>
     <a href="./showAdjustments.php"> Adjustments</a>
     <a href="./showSalaryScale.php"> Salary Scale</a>
     <a href="./showAdjEmp.php"> EmployeeAdjustments</a>
@@ -53,9 +52,7 @@
         <h4>Type:</h4>
         - The employment track of a faculty member.
         <h4>Department:</h4>
-        - The department ID of the department in which the faculty member works.
-        <br>
-        - Foreign Key referencing Department
+        - The number that corresponds with a department that a faculty member belongs to.
       </p>
     </div>
 
@@ -100,13 +97,13 @@
                   echo "<table align='center'>";
                   echo "<tr><td>UPS ID</td><td>Last Name</td><td>First Name</td><td>Type</td><td>Department</td></tr>";
                   while($row = $result_set->fetch()) {
-                    echo "<tr><td>" . $row['upsID'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['firstName'] . "</td><td>" . $row['type'] . "</td><td>" . $row['deptID'] . "</td><td>
+                    echo "<tr><td>" . $row['upsID'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['firstName'] . "</td><td>" . $row['type'] . "</td><td>" . $row['dept'] . "</td><td>
                           </td><td> <form action='./EditDB_PHP/update/updateEmployees.php' method='post'>
                             <input type='hidden' name='upsID' value= $row[0]>
                             <input type='hidden' name='lastName' value= $row[1]>
                             <input type='hidden' name='firstName' value= $row[2]>
                             <input type='hidden' name='type' value= $row[3]>
-                            <input type='hidden' name='deptID' value= $row[4]>
+                            <input type='hidden' name='dept' value= $row[4]>
                             <input type='submit' value='Update'>
                           </form>
                           </td><td>
@@ -115,7 +112,7 @@
                             <input type='hidden' name='lastName' value= $row[1]>
                             <input type='hidden' name='firstName' value= $row[2]>
                             <input type='hidden' name='type' value= $row[3]>
-                            <input type='hidden' name='deptID' value= $row[4]>
+                            <input type='hidden' name='dept' value= $row[4]>
                             <input type='submit' value='Delete'>
                           </form>
                           </td></tr>";

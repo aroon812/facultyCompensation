@@ -21,8 +21,8 @@
   <div class="navbar">
   <a href="../index.html">Home</a>
     <a href="./showCurrent.php">Current</a>
-    <a href="../HTML/past.html">Past</a>
-    <a href="../HTML/projected.html">Projected</a>
+    <a href="./past.php">Past</a>
+    <a href="./projected.php">Projected</a>
     <a href="./showDepartments.php"> Departments</a>
     <a href="./showEmployees.php"> Employees</a>
     <a href="./showAdjustments.php"> Adjustments</a>
@@ -44,26 +44,30 @@
         - The year in which the adjustments are active.
         <br>
         - Primary Key
+        <br>
+        - Foreign Key referencing Employee Position Information by Year
         <h4>UPS ID:</h4>
         - The number that corresponds with a Puget Sound faculty member.
         <br>
         - Primary Key
+        <br>
+        - Foreign Key referencing Employee Position Information by Year
         <h4>Adjustment ID:</h4>
         - The number that corresponds with an adjustment operation.
         <br>
         - Primary Key
+        <br>
+        - Foreign Key referencing Adjustments
+        <h4>First Name:</h4>
+        - The first name of a faculty member.
+        <h4>Last Name:</h4>
+        - The last name of a faculty member.
       </p>
     </div>
 
     <div id="right" class="sticky">
       <p>
         <h3>Action Descriptions:</h3>
-        <h4>Update:</h4>
-        The update button will allow you to modify the data for the row that was selected in the table.
-        <br>
-        - Primary keys cannot be modified
-        <br>
-        - Foriegn keys should be modified with caution.
         <h4>Delete:</h4>
         The delete button will remove the data for that row from the table.
         <h4>Add:</h4>
@@ -88,25 +92,22 @@
             //set errormode to use exceptions
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //return all passengers, and store the result set
-            $query_str = $db->prepare("select * from EmployeeAdjustments order by year desc");
+            $query_str = $db->prepare("select year, upsID, adjID, firstName, lastName from EmployeeAdjustments natural join employee order by year desc");
         
             if ($query_str->execute()){
                 $i = 0;
-                $result_set = $db->query("select * from EmployeeAdjustments order by year desc");
+                $result_set = $db->query("select year, upsID, adjID, firstName, lastName from EmployeeAdjustments natural join employee order by year desc");
                 echo "<table align='center'>";
-                echo "<tr><td>Year</td><td>UPS ID</td><td>Adjustment ID</td></tr>";
+                echo "<tr><td>Year</td><td>UPS ID</td><td>Adjustment ID</td><td>First Name</td><td>Last Name</td></tr>";
                 while($row = $result_set->fetch()) {
-                    echo "<tr><td>" . $row['year'] . "</td><td>" . $row['upsID'] . "</td><td>" . $row['adjID'] . "</td><td></td><td> <form action='./EditDB_PHP/update/updateAdjEmp.php' method='post'>
-                          <input type='hidden' name='year' value= $row[0]>
-                          <input type='hidden' name='upsID' value= $row[1]>
-                          <input type='hidden' name='adjID' value= $row[2]>
-                          <input type='submit' value='Update'>
-                        </form>
+                    echo "<tr><td>" . $row['year'] . "</td><td>" . $row['upsID'] . "</td><td>" . $row['adjID'] . "</td><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td><td>
                         </td><td>
                           <form action='./EditDB_PHP/delete/deleteAdjEmp.php' method='post'>
                           <input type='hidden' name='year' value= $row[0]>
                           <input type='hidden' name='upsID' value= $row[1]>
                           <input type='hidden' name='adjID' value= $row[2]>
+                          <input type='hidden' name='firstName' value= $row[3]>
+                          <input type='hidden' name='lastName' value= $row[4]>
                           <input type='submit' value='Delete'>
                         </form>
                         </td></tr>";

@@ -18,9 +18,9 @@
 		<div class="navbar">
 			<a href="../index.html">Home</a>
 			<a href="../PHP/showCurrent.php">Current</a>
-			<a href="./HTML/past.html">Past</a>
-			<a href="./HTML/projected.html">Projected</a>
-			<a href="../PHP/showDepartments.php""> Departments</a>
+			<a href="../PHP/past.php">Past</a>
+			<a href="../PHP/projected.php">Projected</a>
+			<a href="../PHP/showDepartments.php"> Departments</a>
 			<a href="../PHP/showEmployees.php"> Employees</a>
 			<a href="../PHP/showAdjustments.php"> Adjustments</a>
 			<a href="../PHP/showSalaryScale.php"> Salary Scale</a>
@@ -31,45 +31,44 @@
 
 		<div id="container">
 
-				<div id="left" class="sticky">
-				  <p>
+			<div id="left" class="sticky">
+				<p>
 					<h2>SQLite3 DB Access</h2>
-					This table holds data about faculty and employees.
-					<h3>Column Value Descriptions:</h3>
-					<h4>UPS ID:</h4>
-					- The number that corresponds with a Puget Sound faculty member.
-					<br>
-					- Primary Key
-					<h4>Last Name:</h4>
-					- The last name of a faculty member.
-					<h4>First Name:</h4>
-					- The first name of a faculty member.
-					<h4>Type:</h4>
-					- The employment track of a faculty member.
-					<h4>Department:</h4>
-					- The number that corresponds with a department that a faculty member belongs to.
-				  </p>
+					This is the space to execute custom SQLite3 commands.<br> 
+					we recommend sticking to the queries in the "SQLite3 Help Guide" section.<br>
+					
+					<p class="red">
+						WARNING:<br>
+						- droping tables may result in data loss<br>
+						- adding tables may require additional internal development<br> 
+					</p>
+				</p>
+			</div>
+		
+			<div id="right" class="sticky">
+				<p>
+					<h3>SQLite3 Helpful Links:</h3>
+					<a href="https://www.sqlite.org/index.html" target="_blank">- sqlite.org</a> <br>
+					<a href="https://www.sqlitetutorial.net" target="_blank">- sqlitetutorial.net</a> 
+				</p>
+			</div>
+		
+			<div id="center">
+				<h2>SQLite3 Editor</h2>
+				<div class="sqlBorder">
+					<form action="../PHP/DBAccess.php" method="post">
+						<fieldset>
+							<legend>Query:</legend>
+							<textarea name="query" placeholder="SQLite3 Goes Here..." autofocus required></textarea><br>
+							<input type = "submit" name = "submit" value="Run">
+						</fieldset>
+					</form>
 				</div>
-			
-				<div id="right" class="sticky">
-				  <p>
-					<h3>SQL Help:</h3>
-					<img src="../IMG/sql.png" alt="SQL" width="600" height="2000">
-				  </p>
-				</div>
-			
-				<div id="center">
-				  <h2>SQLite3 Editor</h2>
-				  <div>
-						<form action="../PHP/DBAccess.php" method="post">
-							<fieldset>
-								<legend>Query:</legend>
-								<textarea name="query" placeholder="SQLite3 Goes Here..." autofocus required></textarea><br>
-								<input type = "submit" name = "submit" value="Run">
-							</fieldset>
-						</form>
-					</div>
-				</div>
+					<p>
+						<h3>SQLite3 Help Guide:</h3>
+						<img src="../IMG/sql.png" alt="SQL" width="600" height="2050" class = "sqlImg">
+					</p>
+			</div>
 			
 		</div>
 			  

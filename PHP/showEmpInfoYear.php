@@ -21,8 +21,8 @@
   <div class="navbar">
     <a href="../index.html">Home</a>
     <a href="./showCurrent.php">Current</a>
-    <a href="../HTML/past.html">Past</a>
-    <a href="../HTML/projected.html">Projected</a>
+    <a href="./past.php">Past</a>
+    <a href="./projected.php">Projected</a>
     <a href="./showDepartments.php"> Departments</a>
     <a href="./showEmployees.php"> Employees</a>
     <a href="./showAdjustments.php"> Adjustments</a>
@@ -48,16 +48,22 @@
         - The number that corresponds with a Puget Sound faculty member.
         <br>
         - Primary Key
+        <br>
+        - Foreign Key referencing Employee
         <h4>Position Number:</h4>
         - The number that corresponds with a Puget Sound faculty member's job.
         <h4>Include Next Year:</h4>
         - The predicted employment status of an employee for the next year.
         <h4>Rank:</h4>
         - The level of employment for an employee.
+        <br>
+        - Foreign Key referencing Salary Adjustments
         <h4>Step:</h4>
         - The progress of an employee in their rank.
+        - Foreign Key referencing Salary Adjustments
+        <br>
         <h4>Step Year:</h4>
-        - The progress of an employee in their rank for full proffessors.
+        - The progress of an employee in their step for full proffessors.
         <h4>Last Name:</h4>
         - The last name of a faculty member.
         <h4>First Name:</h4>

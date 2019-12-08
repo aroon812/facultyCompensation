@@ -21,8 +21,8 @@
   <div class="navbar">
     <a href="../index.html">Home</a>
     <a href="./showCurrent.php">Current</a>
-    <a href="../HTML/past.html">Past</a>
-    <a href="../HTML/projected.html">Projected</a>
+    <a href="./past.php">Past</a>
+    <a href="./projected.php">Projected</a>
     <a href="./showDepartments.php"> Departments</a>
     <a href="./showEmployees.php"> Employees</a>
     <a href="./showAdjustments.php"> Adjustments</a>
@@ -38,7 +38,7 @@
     <div id="left" class="sticky">
       <p>
         <h2>Salary Scale</h2>
-        This table holds data about faculty and employees.
+        This table holds data about the unadjusted salary for certain levels of employment.
         <h3>Column Value Descriptions:</h3>
         <h4>Rank:</h4>
         - The level of employment for an employee.

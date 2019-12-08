@@ -21,38 +21,74 @@
   <![endif]-->
   
   <div class="navbar">
-    <a href="../../../index.html">Home</a>
-    <a href="../../current.html">Current</a>
-    <a href="../../past.html">Past</a>
-    <a href="../../projected.html">Projected</a>
-    <a href="../../departments.html"> Departments</a>
-    <a href="../../employees.html"> Employees</a>
-    <a href="../../adjustments.html"> Adjustments</a>
-    <a href="../../salaryScale.html"> Salary Scale</a>
-    <a href="../../adjEmp.html"> EmployeeAdjustments</a>
-    <a href="../../empInfoYear.html">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="../../add.html">add</a>
-        <a href="../../update.html">update</a>
-        <a href="../../delete.html">delete</a>
-      </div>
-    </div> 
+    <a href="./../../../index.html">Home</a>
+    <a href="./../../showCurrent.php">Current</a>
+    <a href="./../../past.php">Past</a>
+    <a href="./../../projected.php">Projected</a>
+    <a href="./../../showDepartments.php"> Departments</a>
+    <a href="./../../showEmployees.php"> Employees</a>
+    <a href="./../../showAdjustments.php"> Adjustments</a>
+    <a href="./../../showSalaryScale.php"> Salary Scale</a>
+    <a class= "active" href="./../../showAdjEmp.php"> EmployeeAdjustments</a>
+    <a href="./../../showEmpInfoYear.php">EmployeeInformationByYear</a>
+    <a href="./../../../HTML/DBAccess.html">SQL Editor</a>
   </div>
 
-  <h1 class="pagetitle">Add Employee Adjustment</h1>
+  <div id="container">
 
-  <article>
+<div id="left" class="sticky">
+  <p>
+    <h2>Employee Adjustments</h2>
+    This table holds data about the adjustments for faculty and employees compensation for a given year.
+    <h3>Column Value Descriptions:</h3>
+    <h4>Year:</h4>
+    - The year in which the adjustments are active.
+    <br>
+    - Primary Key
+    <br>
+    - Foreign Key referencing Employee Position Information by Year
+    <h4>UPS ID:</h4>
+    - The number that corresponds with a Puget Sound faculty member.
+    <br>
+    - Primary Key
+    <br>
+    - Foreign Key referencing Employee Position Information by Year
+    <h4>Adjustment ID:</h4>
+    - The number that corresponds with an adjustment operation.
+    <br>
+    - Primary Key
+    <br>
+    - Foreign Key referencing Adjustments
+  </p>
+</div>
+
+<div id="right" class="sticky">
+<p>
+    <h3>Action Descriptions:</h3>
+            <h4>Add:</h4>
+            The add button will allow you to add an employee adjustment to the table.
+          <br>
+          - All fields must be unique
+          <br>
+        - UPS ID and year must exist as a combination in Employee Information by Year. 
+          <br>
+          - Adjustment ID must exist in Salary Adjustments.
+    <form action="./../../showAdjEmp.php">
+            <br>
+            <button type="submit">Return to View</button>
+    </form>
+</div>
+
+<div id="center">
+  <div class="sqlBorder">
+    <fieldset>
 			<h3>New Employee Adjustment Info:</h3>
 			Year:
 			<?php echo $_POST["year"]; ?><br>
 			UPS ID:
 			<?php echo $_POST["upsID"]; ?><br>
 			Adjustment ID:
-			<?php echo $_POST["adjID"]; ?><br>
+      <?php echo $_POST["adjID"]; ?><br>
 			<?php
                 //path to the SQLite database file
                 $db_file = '../../../DB/bigTuba.db';
@@ -69,36 +105,9 @@
                     $query_str->bindParam(':upsID', $_POST["upsID"]);
                     $query_str->bindParam(':adjID', $_POST["adjID"]);
                     if ($query_str->execute()){
-                        echo "Success!<br>";
+                        echo "<h4>Success!</h4><br>";
                     }
-
-                    //open connection to the airport database file
-                $db = new PDO('sqlite:' . $db_file); 
-                $db->exec( 'PRAGMA foreign_keys = ON;' );
-
-               
-
-
-                //set errormode to use exceptions
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                //return all passengers, and store the result set
-                $query_str = $db->prepare("select * from Employee natural join EmployeeAdjustments order by Year desc");
-            
-                if ($query_str->execute()){
-                    $i = 0;
-                    $result_set = $db->query("select * from Employee natural join EmployeeAdjustments order by Year desc");
-                    echo "<table align='center'>";
-                    echo "<tr><td>upsID</td><td>lastName</td><td>firstName</td><td>type</td><td>dept</td><td>year</td><td>adjID</td></tr>";
-                    while($row = $result_set->fetch()) {
-                      if ($row[$i] == NULL){
-                        echo "<tr><td>[NULL]<tr><td>";
-                      } else {
-                        echo "<tr><td>" . $row['upsID'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['firstName'] . "</td><td>" . $row['type'] . "</td><td>" . $row['dept'] . "</td><td>" . $row['year'] . "</td><td>" . $row['adjID'] . "</td></tr>";
-                      }
-                    }
-                    echo "</table>";
-                }
-
+                    echo "</fieldset>";
                 $db = null;
                 }    
                 catch(PDOException $e) {
@@ -107,14 +116,14 @@
                       echo "
                         <script>
                         alert('Unique constraint failed!');
-                        window.location = './../../showEmployees.php';
+                        window.location = './../../showAdjEmp.php';
                         </script>
                         ";
                   } 
                   elseif (strpos($message, "CHECK")){
                     echo "
                       <script>
-                      window.location = './../../showEmployees.php';
+                      window.location = './../../showAdjEmp.php';
                       alert('Check constraint failed!');
                       </script>
                       ";
@@ -122,7 +131,7 @@
                   elseif (strpos($message, "FOREIGN")){
                     echo "
                       <script>
-                      window.location = './../../showEmployees.php';
+                      window.location = './../../showAdjEmp.php';
                       alert('Foreign key constraint failed!');
                       </script>
                       ";
@@ -130,7 +139,9 @@
                   die();      
                     }
                 ?>
-	</article>
-
+   </div>
+  </div>
+</div>
+</div>
 </body>
 </html>

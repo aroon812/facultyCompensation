@@ -21,35 +21,42 @@
   <![endif]-->
   
   <div class="navbar">
-    <a href="index.html">Home</a>
+    <a class="active" href="index.html">Home</a>
     <a href="./PHP/showCurrent.php">Current</a>
     <a href="./PHP/past.php">Past</a>
-    <a href="./HTML/projected.html">Projected</a>
+    <a href="./PHP/projected.php">Projected</a>
     <a href="./PHP/showDepartments.php"> Departments</a>
     <a href="./PHP/showEmployees.php"> Employees</a>
     <a href="./PHP/showAdjustments.php"> Adjustments</a>
     <a href="./PHP/showSalaryScale.php"> Salary Scale</a>
     <a href="./PHP/showAdjEmp.php"> EmployeeAdjustments</a>
     <a href="./PHP/showEmpInfoYear.php">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="./HTML/add.html">add</a>
-        <a href="./HTML/update.html">update</a>
-        <a href="./HTML/delete.html">delete</a>
-        <a href="./HTML/DBAccess.html">SQL</a>
-      </div>
-    </div> 
+    <a href="./HTML/DBAccess.html">SQL Editor</a>
   </div>
 
   <!-- Add your site or application content here -->
-  <h1 class="pagetitle">Faculty Compensation Database</h1>
-  <img src="./IMG/Schema.png" alt="Database Schema" class=center>
+  <div class="container">
+    <div id="left25">
+      <p>
+        <h2>University of Puget Sound Payroll</h2>
+        This table holds the base and adjusted salaries of each faculty member for the current fiscal year. On the right, we calculate
+        the total budget on salaries for a fiscal year and break down the salary spending by type of professor as well as by rank of professor. 
+      </p>
+      <div class="center"></dic>
+        <div class="fling-minislide">
+          <img src="/path-to-your-image-file-4.jpg" alt="Slide 4" />
+          <img src="/path-to-your-image-file-3.jpg" alt="Slide 3" />
+          <img src="/path-to-your-image-file-2.jpg" alt="Slide 2" />
+          <img src="/path-to-your-image-file-1.jpg" alt="Slide 1" />
+        </div>   
+      </div>  
+    </div>
 
+    <div id="right74">
+        <h2>Database Schema</h2>
+        <img class="schema" src="./IMG/Schema.png" alt="Schema" width="600" height="500"/>
+    </div>
 
-
-  
+  </div>
 </body>
 </html>

@@ -21,29 +21,51 @@
   <![endif]-->
   
   <div class="navbar">
-    <a href="../../../index.html">Home</a>
-    <a href="../../current.html">Current</a>
-    <a href="../../past.html">Past</a>
-    <a href="../../projected.html">Projected</a>
-    <a href="../../departments.html"> Departments</a>
-    <a href="../../employees.html"> Employees</a>
-    <a href="../../adjustments.html"> Adjustments</a>
-    <a href="../../salaryScale.html"> Salary Scale</a>
-    <a href="../../adjEmp.html"> EmployeeAdjustments</a>
-    <a href="../../empInfoYear.html">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="../../add.html">add</a>
-        <a href="../../update.html">update</a>
-        <a href="../../delete.html">delete</a>
-      </div>
-    </div> 
-  </div>
+      <a href="./../../../index.html">Home</a>
+      <a href="./../../../PHP/showCurrent.php">Current</a>
+      <a href="./../../../PHP/past.php">Past</a>
+      <a href="./../../../PHP/projected.php">Projected</a>
+      <a href="./../../../PHPshowDepartments.php"> Departments</a>
+      <a href="./../../../PHP/showEmployees.php"> Employees</a>
+      <a href="./../../../PHP/showAdjustments.php"> Adjustments</a>
+      <a class= "active" href="./../../../PHP/showSalaryScale.php"> Salary Scale</a>
+      <a href="./../../../PHP/showAdjEmp.php"> EmployeeAdjustments</a>
+      <a href="./../../../PHP/showEmpInfoYear.php">EmployeeInformationByYear</a>
+      <a href="./../../DBAccess.html">SQL Editor</a>
+    </div>
 
-  <h1 class="pagetitle">Add Salary Scale</h1>
+    <div id="container">
+
+        <div id="left" class="sticky">
+              <p>
+                <h2>Salary Scale</h2>
+                This table holds data about the unadjusted salary for certain levels of employment.
+                <h3>Column Value Descriptions:</h3>
+                <h4>Rank:</h4>
+                - The level of employment for an employee.
+                <br>
+                - Primary Key
+                <h4>Step:</h4>
+                - The progress of an employee in their rank.
+                <br>
+                - Primary Key
+                <h4>Base Salary:</h4>
+                - The starting compensation for an employee at a certain rank and step without adjustments.
+              </p>
+        </div>
+        
+        <div id="right" class="sticky">
+          <p>
+            <h3>Action Descriptions:</h3>
+            <h4>Add:</h4>
+            The add button will allow you to add a salary scale to the table.
+            <br>
+            - Rank and scale must be a unique combination
+          </p>
+        </div>
+        
+        <div id="center">
+          <div class="sqlBorder">
 
 
 
@@ -59,7 +81,7 @@
   <form action="./../../../PHP/EditDB_PHP/add/addSalaryScale.php" method="post">
     <fieldset>
       <legend>Add Salary Scale Form</legend>
-      
+      Please fill out the following information to update the database.<br><br>
       <br><br>
       
       Rank:<br> 
@@ -75,6 +97,8 @@
     </fieldset>
   </form>
 
- 
+</div>
+</div>
+</div>
 </body>
 </html>

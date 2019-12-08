@@ -21,29 +21,19 @@
   <![endif]-->
   
   <div class="navbar">
-    <a href="../../../index.html">Home</a>
-    <a href="../../current.html">Current</a>
-    <a href="../../past.html">Past</a>
-    <a href="../../projected.html">Projected</a>
-    <a href="../../departments.html"> Departments</a>
-    <a href="../../employees.html"> Employees</a>
-    <a href="../../adjustments.html"> Adjustments</a>
-    <a href="../../salaryScale.html"> Salary Scale</a>
-    <a href="../../adjEmp.html"> EmployeeAdjustments</a>
-    <a href="../../empInfoYear.html">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="../../add.html">add</a>
-        <a href="../../update.html">update</a>
-        <a href="../../delete.html">delete</a>
-      </div>
-    </div> 
-  </div>
+      <a href="./../../../index.html">Home</a>
+      <a href="./../../../PHP/showCurrent.php">Current</a>
+      <a href="./../../../PHP/past.php">Past</a>
+      <a href="./../../../PHP/projected.php">Projected</a>
+      <a href="./../../../PHP/showDepartments.php"> Departments</a>
+      <a class= "active" href="./../../../PHP/showEmployees.php"> Employees</a>
+      <a href="./../../../PHP/showAdjustments.php"> Adjustments</a>
+      <a href="./../../../PHP/showSalaryScale.php"> Salary Scale</a>
+      <a href="./../../../PHP/showAdjEmp.php"> EmployeeAdjustments</a>
+      <a href="./../../../PHP/showEmpInfoYear.php">EmployeeInformationByYear</a>
+      <a href="./../../DBAccess.html">SQL Editor</a>
+    </div>
 
-  <h1 class="pagetitle">Add Employee</h1>
 
   <!--
 <form action="./../../../PHP/EditDB_PHP/add/addEmployee.php" method="POST">
@@ -55,12 +45,47 @@
    <button type="submit">Add Employee</button>
   </form>
 -->
+<div id="container">
+  <div id="left" class="sticky">
+  <p>
+    <h2>Employees</h2>
+    This table holds data about faculty and employees.
+    <h3>Column Value Descriptions:</h3>
+    <h4>UPS ID:</h4>
+    - The number that corresponds with a Puget Sound faculty member.
+    <br>
+    - Primary Key
+    <h4>Last Name:</h4>
+    - The last name of a faculty member.
+    <h4>First Name:</h4>
+    - The first name of a faculty member.
+    <h4>Type:</h4>
+    - The employment track of a faculty member.
+    <h4>Department:</h4>
+    - The department ID of the department in which the faculty member works.
+    <br>
+    - Foreign Key referencing Department
+  </p>
+</div>
 
+  <div id="right" class="sticky">
+  <p>
+    <h3>Action Descriptions:</h3>
+    <h4>Add:</h4>
+    The add button will allow you to add employees to the table.
+    <br>
+    - UPS ID must be unique.
+    <br>
+    - DeptID is a foreign key that must exist in the department table for an employee to be added.
+    </p>
+</div>
+
+<div id="center">
+  <div class="sqlBorder">
   <form action="./../../../PHP/EditDB_PHP/add/addEmployee.php" method="post">
     <fieldset>
       <legend>Add Employee Form</legend>
-      
-      <br><br>
+      Please fill out the following information to update the database.<br><br>
       
       First Name:<br> 
       <input type = "text" name = "firstName" placeholder="first name" required autofocus><br>
@@ -75,7 +100,7 @@
       <input type = "text" name = "type" placeholder="type" required><br>
 
       Dept:<br>
-      <input type = "text" name = "dept" placeholder="department" required><br>
+      <input type = "text" name = "deptID" placeholder="department" required><br>
       
       <input type = "submit" name = "submit" value="Add Employee">
     </fieldset>

@@ -21,35 +21,55 @@
   <![endif]-->
   
   <div class="navbar">
-    <a href="../../../index.html">Home</a>
-    <a href="../../current.html">Current</a>
-    <a href="../../past.html">Past</a>
-    <a href="../../projected.html">Projected</a>
-    <a href="../../departments.html"> Departments</a>
-    <a href="../../employees.html"> Employees</a>
-    <a href="../../adjustments.html"> Adjustments</a>
-    <a href="../../salaryScale.html"> Salary Scale</a>
-    <a href="../../adjEmp.html"> EmployeeAdjustments</a>
-    <a href="../../empInfoYear.html">EmployeeInformationByYear</a>
-    <div class="dropdown">
-      <button class="dropbtn">Edit Data 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="../../add.html">add</a>
-        <a href="../../update.html">update</a>
-        <a href="../../delete.html">delete</a>
+      <a href="./../../../index.html">Home</a>
+      <a href="./../../../PHP/showCurrent.php">Current</a>
+      <a href="./../../../PHP/past.php">Past</a>
+      <a href="./../../../PHP/projected.php">Projected</a>
+      <a href="./../../../PHPshowDepartments.php"> Departments</a>
+      <a href="./../../../PHP/showEmployees.php"> Employees</a>
+      <a class= "active" href="./../../../PHP/showAdjustments.php"> Adjustments</a>
+      <a href="./../../../PHP/showSalaryScale.php"> Salary Scale</a>
+      <a href="./../../../PHP/showAdjEmp.php"> EmployeeAdjustments</a>
+      <a href="./../../../PHP/showEmpInfoYear.php">EmployeeInformationByYear</a>
+      <a href="./../../DBAccess.html">SQL Editor</a>
+    </div>
+    <div id="container">
+    <div id="left" class="sticky">
+        <p>
+          <h2>Adjustments</h2>
+          This table holds data about adjustment operations for faculty compensation.
+          <h3>Column Value Descriptions:</h3>
+          <h4>Adjustment ID:</h4>
+          - The number that represents the adjustment for that row.
+          <br>
+          - Primary Key
+          <h4>Adjustment Value:</h4>
+          - The value to be applied to the adjustment operation.
+          <h4>Operation:</h4>
+          - The operation that the adjustment preforms when calculating total salary.
+          <h4>Description:</h4>
+          - The summary of the adjustment including what it is used for.
+        </p>
       </div>
-    </div> 
-  </div>
+      
+      <div id="right" class="sticky">
+        <p>
+          <h3>Action Descriptions:</h3>
+          <h4>Add:</h4>
+          The add button will allow you add an adjustment to the table.
+          <br>
+          - Adjustment ID must be unique.
+          <br>
+        </p>
+      </div>
 
-  <h1 class="pagetitle">Add Adjustment</h1>
-
+  <div id="center">
+    <div class="sqlBorder">
   <form action="./../../../PHP/EditDB_PHP/add/addAdjustment.php" method="post">
     <fieldset>
       <legend>Add Adjustment Form</legend>
       
-      <br><br>
+      Please fill out the following information to update the database.<br><br>
       
       adjID:<br> 
       <input type = "text" name = "adjID" placeholder="adjustment ID" required autofocus><br>
@@ -63,11 +83,13 @@
       Description:<br>
       <input type = "text" name = "description" placeholder="description" required><br>
       
-      <input type = "submit" name = "submit" value="Add Adjustment">
+      <input type = "submit" name = "submit" value="Add Salary Adjustment">
     </fieldset>
   </form>
 
-
+</div>
+</div>
+</div>
 
 
 

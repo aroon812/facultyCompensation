@@ -21,8 +21,8 @@
   <div class="navbar">
     <a href="../index.html">Home</a>
     <a href="./showCurrent.php">Current</a>
-    <a href="../HTML/past.html">Past</a>
-    <a href="../HTML/projected.html">Projected</a>
+    <a href="./past.php">Past</a>
+    <a href="./projected.php">Projected</a>
     <a href="./showDepartments.php"> Departments</a>
     <a href="./showEmployees.php"> Employees</a>
     <a class= "active" href="./showAdjustments.php"> Adjustments</a>
