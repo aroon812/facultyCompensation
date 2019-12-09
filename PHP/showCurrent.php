@@ -27,8 +27,8 @@
     <a href="./showEmployees.php"> Employees</a>
     <a href="./showAdjustments.php"> Adjustments</a>
     <a href="./showSalaryScale.php"> Salary Scale</a>
-    <a href="./showAdjEmp.php"> EmployeeAdjustments</a>
-    <a href="./showEmpInfoYear.php">EmployeeInformationByYear</a>
+    <a href="./showAdjEmp.php"> Employee Adjustments</a>
+    <a href="./showEmpInfoYear.php">Employee Information By Year</a>
     <a href="../HTML/DBAccess.html">SQL Editor</a>
   </div>
 
@@ -46,6 +46,10 @@
         - The first name of a faculty member.
         <h4>Last Name:</h4>
         - The last name of a faculty member.
+        <h4> Type: </h4>
+        - The track of the faculty member.
+        <h4> Rank: </h4>
+        - The level of employment for the faculty member. 
         <h4>Base Salary:</h4>
         - The compensation for an employee at a certain rank and step without adjustments.
         <h4>Total Salary:</h4>
@@ -66,6 +70,10 @@
         $db_file = '../DB/bigTuba.db';
                       $db = new PDO('sqlite:' . $db_file);
                       $salariesByRank = findTotalRankSalaries($db);
+                      $total = 0;
+                      foreach($salariesByRank as $salary){
+                        $total += $salary;
+                      }
                       echo "<table align='left'>";
                       echo "<tr><td>Salary By Rank</td></tr>";
                       echo "<tr><td>" . "Assistant" . "</td><td>" . $salariesByRank['Asst'] . "</td></tr>";
@@ -74,6 +82,7 @@
                       echo "<tr><td>" . "Instructor" . "</td><td>" . $salariesByRank['Inst'] . "</td></tr>";
                       echo "<tr><td>" . "Clinical Assitant" . "</td><td>" . $salariesByRank['CLAsst'] . "</td></tr>";
                       echo "<tr><td>" . "Clinical Associate" . "</td><td>" . $salariesByRank['CLAssc'] . "</td></tr>";
+                      echo "<tr><td><b>Total</b></td><td><b>$total</b></td></tr>";
                       echo "</table>";
                       $db = null;
                       ?>
@@ -84,6 +93,10 @@
       $db_file = '../DB/bigTuba.db';
                     $db = new PDO('sqlite:' . $db_file);
                     $salariesByType = findTotalTypeSalaries($db);
+                    $total = 0;
+                    foreach($salariesByType as $salary){
+                      $total += $salary;
+                    }
                     echo "<table align='right'>";
                     echo "<tr><td>Salary By Type</td></tr>";
                     echo "<tr><td>" . "Tenure" . "</td><td>" . $salariesByType['T'] . "</td></tr>";
@@ -93,10 +106,14 @@
                     echo "<tr><td>" . "Visiting Assistant" . "</td><td>" . $salariesByType['VAP'] . "</td></tr>";
                     echo "<tr><td>" . "Visiting Instructor" . "</td><td>" . $salariesByType['VIN'] . "</td></tr>";
                     echo "<tr><td>" . "Emeritus" . "</td><td>" . $salariesByType['E'] . "</td></tr>";
+                    echo "<tr><td><b>Total</b></td><td><b>$total</b></td></tr>";
                     echo "</table>";
                     $db = null;
                     ?>
       </div>
+      
+      
+                      
       </div>
     </div>
 
@@ -120,13 +137,13 @@
                     $totalSalaries = 0;
                     $result_set = $db->query("with A as (select max(year) from EmployeePositionInformationByYear) select firstName, lastName, baseSalary, year, upsID, rank, type from SalaryScale natural join EmployeePositionInformationByYear natural join Employee where year in A");
                     echo "<table align='center'>";
-                    echo "<tr><td>firstName</td><td>lastName</td><td>baseSalary</td><td>totalSalary</td></tr>";
+                    echo "<tr><td>firstName</td><td>lastName</td><td>type</td><td>rank</td><td>baseSalary</td><td>totalSalary</td></tr>";
                     while($row = $result_set->fetch()) {
                       if ($row[$i] == NULL){
                         echo "<tr><td>[NULL]<tr><td>";
                       } else {
                         $totalSalary = findTotalSalary($db, $row['upsID'], $row['year']);
-                        echo "<tr><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['baseSalary'] ."</td><td>". $totalSalary . "</td></tr>";
+                        echo "<tr><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['type'] . "</td><td>" . $row['rank'] . "</td><td>" . $row['baseSalary'] ."</td><td>". $totalSalary . "</td></tr>";
                         $totalSalaries += $totalSalary;
                       }
                     }

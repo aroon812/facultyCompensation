@@ -29,8 +29,8 @@
     <a class= "active" href="./../../showEmployees.php"> Employees</a>
     <a href="./../../showAdjustments.php"> Adjustments</a>
     <a href="./../../showSalaryScale.php"> Salary Scale</a>
-    <a href="./../../showAdjEmp.php"> EmployeeAdjustments</a>
-    <a href="./../../showEmpInfoYear.php">EmployeeInformationByYear</a>
+    <a href="./../../showAdjEmp.php"> Employee Adjustments</a>
+    <a href="./../../showEmpInfoYear.php">Employee Information By Year</a>
     <a href="./../../../HTML/DBAccess.html">SQL Editor</a>
   </div>
   <div id="container">

@@ -29,8 +29,8 @@
     <a href="./showEmployees.php"> Employees</a>
     <a href="./showAdjustments.php"> Adjustments</a>
     <a href="./showSalaryScale.php"> Salary Scale</a>
-    <a href="./showAdjEmp.php"> EmployeeAdjustments</a>
-    <a href="./showEmpInfoYear.php">EmployeeInformationByYear</a>
+    <a href="./showAdjEmp.php"> Employee Adjustments</a>
+    <a href="./showEmpInfoYear.php">Employee Information By Year</a>
     <a href="../HTML/DBAccess.html">SQL Editor</a>
   </div>
 
@@ -226,29 +226,38 @@
         } 
 
         function findTotalSalary($db, $upsID, $year){
-          $adjustmentID_results = $db->query("select adjID from EmployeeAdjustments where year = $year and upsID = $upsID");
-          $adjustmentIDs = $adjustmentID_results->fetch(PDO::FETCH_ASSOC);
-          $baseSalaryQuery = $db->query("select baseSalary from EmployeePositionInformationByYear natural join SalaryScale where upsID = $upsID");
-          $baseSalary = $baseSalaryQuery->fetch()[0];
+          $adjustmentID_results = $db->query("select adjID, upsID from EmployeeAdjustments natural join Employee where year = $year and upsID = $upsID;");
+          $adjustmentIDs = $adjustmentID_results->fetchAll(PDO::FETCH_ASSOC);
+        
+          $baseSalaryQuery = $db->query("select baseSalary from EmployeePositionInformationByYear natural join SalaryScale where year=$year and upsID = $upsID");
+
+          $baseSalary = $baseSalaryQuery->fetch()['baseSalary'];
+          //print_r($baseSalary);
+          //print_r(" ");
           
           if (is_array($adjustmentIDs) || is_object($adjustmentIDs)){
           foreach ($adjustmentIDs as $adjustmentID){
-            $adjustment_result = $db->query("select * from SalaryAdjustments where adjID = $adjustmentID");
+            $id = $adjustmentID['adjID'];
+            $adjustment_result = $db->query("select * from SalaryAdjustments where adjID = $id");
             $adjustment = $adjustment_result->fetch();
             if ($adjustment["operation"] == "x"){
               $baseSalary *= $adjustment["adjVal"];
             }
           }
+  
           foreach ($adjustmentIDs as $adjustmentID){
-            $adjustment_result = $db->query("select * from SalaryAdjustments where adjID = $adjustmentID");
+            $id = $adjustmentID['adjID'];
+            $adjustment_result = $db->query("select * from SalaryAdjustments where adjID = $id");
             $adjustment = $adjustment_result->fetch();
             if ($adjustment["operation"] == "+"){
               $baseSalary += $adjustment["adjVal"];
             }   
           }
         }
+        
           return $baseSalary;
         }
+
 ?>
 </body>
 </html>
