@@ -118,7 +118,7 @@
                   $result_set = $db->query("select firstName, lastName, baseSalary, year, upsID, rank, type from SalaryScale natural join EmployeePositionInformationByYear natural join Employee where year=$year");
 
                   echo "<table align='center'>";
-                  echo "<tr><td>firstName</td><td>lastName</td><td>baseSalary</td><td>totalSalary</td></tr>";
+                  echo "<tr><td>First Name</td><td>Last Name</td><td>Base Salary</td><td>Total Salary</td></tr>";
                   while($row = $result_set->fetch()) {
                     $totalSalary = findTotalSalary($db, $row['upsID'], $year);
                     echo "<tr><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['baseSalary'] ."</td><td>". $totalSalary . "</td></tr>";

@@ -104,15 +104,15 @@
             } elseif (strpos($message, "CHECK")) {
               echo "
             <script>
-            window.location = './../../showAdjustments.php';
             alert('Check constraint failed!');
+            window.location = './../../showAdjustments.php';
             </script>
             ";
             } elseif (strpos($message, "FOREIGN")) {
               echo "
             <script>
-            window.location = './../../showAdjustments.php';
             alert('Foreign key constraint failed!');
+            window.location = './../../showAdjustments.php';
             </script>
             ";
             }

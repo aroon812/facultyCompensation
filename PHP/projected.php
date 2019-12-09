@@ -71,6 +71,10 @@
           $db_file = '../DB/bigTuba.db';
           $db = new PDO('sqlite:' . $db_file);
           $salariesByRank = findTotalRankSalaries($db);
+          $total = 0;
+          foreach ($salariesByRank as $salary) {
+            $total += $salary;
+          }
           echo "<table align='left'>";
           echo "<tr><td>Salary By Rank</td></tr>";
           echo "<tr><td>" . "Assistant" . "</td><td>" . $salariesByRank['Asst'] . "</td></tr>";
@@ -79,6 +83,7 @@
           echo "<tr><td>" . "Instructor" . "</td><td>" . $salariesByRank['Inst'] . "</td></tr>";
           echo "<tr><td>" . "Clinical Assitant" . "</td><td>" . $salariesByRank['CLAsst'] . "</td></tr>";
           echo "<tr><td>" . "Clinical Associate" . "</td><td>" . $salariesByRank['CLAssc'] . "</td></tr>";
+          echo "<tr><td><b>Total</b></td><td><b>$total</b></td></tr>";
           echo "</table>";
           $db = null;
           ?>
@@ -89,6 +94,10 @@
           $db_file = '../DB/bigTuba.db';
           $db = new PDO('sqlite:' . $db_file);
           $salariesByType = findTotalTypeSalaries($db);
+          $total = 0;
+          foreach ($salariesByType as $salary) {
+            $total += $salary;
+          }
           echo "<table align='right'>";
           echo "<tr><td>Salary By Type</td></tr>";
           echo "<tr><td>" . "Tenure" . "</td><td>" . $salariesByType['T'] . "</td></tr>";
@@ -98,6 +107,7 @@
           echo "<tr><td>" . "Visiting Assistant" . "</td><td>" . $salariesByType['VAP'] . "</td></tr>";
           echo "<tr><td>" . "Visiting Instructor" . "</td><td>" . $salariesByType['VIN'] . "</td></tr>";
           echo "<tr><td>" . "Emeritus" . "</td><td>" . $salariesByType['E'] . "</td></tr>";
+          echo "<tr><td><b>Total</b></td><td><b>$total</b></td></tr>";
           echo "</table>";
           $db = null;
           ?>
@@ -124,7 +134,7 @@
           $i = 0;
           $totalSalaries = 0;
 
-          $result_set = $db->query("SELECT max(year) as year from EmployeePositionInformationByYear");               
+          $result_set = $db->query("SELECT max(year) as year from EmployeePositionInformationByYear");
           $row = $result_set->fetch();
           $year = $row['year'];
           $query_str2 = $db->prepare("SELECT upsID as upsID from EmployeePositionInformationByYear where year=$year");
@@ -142,15 +152,11 @@
             $totalSalaries = 0;
             $result_set = $db->query("with A as (select max(year) from EmployeePositionInformationByYear) select firstName, lastName, baseSalary, year, upsID, rank, type from SalaryScale natural join EmployeePositionInformationByYear natural join Employee where year in A");
             echo "<table align='center'>";
-            echo "<tr><td>firstName</td><td>lastName</td><td>type</td><td>rank</td><td>baseSalary</td><td>totalSalary</td></tr>";
+            echo "<tr><td>First Name</td><td>Last Name</td><td>Type</td><td>Rank</td><td>Base Salary</td><td>Total Salary</td></tr>";
             while ($row = $result_set->fetch()) {
-              if ($row[$i] == NULL) {
-                echo "<tr><td>[NULL]<tr><td>";
-              } else {
                 $totalSalary = findTotalSalary($db, $row['upsID'], $row['year']);
                 echo "<tr><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['type'] . "</td><td>" . $row['rank'] . "</td><td>" . $row['baseSalary'] . "</td><td>" . $totalSalary . "</td></tr>";
                 $totalSalaries += $totalSalary;
-              }
             }
             echo "</table>";
           }
@@ -162,10 +168,6 @@
       } catch (PDOException $e) {
         die('Exception : ' . $e->getMessage());
       }
-
-
-
-
       ?>
     </div>
 

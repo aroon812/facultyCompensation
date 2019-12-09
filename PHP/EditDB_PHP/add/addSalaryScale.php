@@ -112,16 +112,16 @@
                   elseif (strpos($message, "CHECK")){
                     echo "
                       <script>
-                      window.location = './../../showSalaryScale.php';
                       alert('Check constraint failed!');
+                      window.location = './../../showSalaryScale.php';
                       </script>
                       ";
                   } 
                   elseif (strpos($message, "FOREIGN")){
                     echo "
                       <script>
-                      window.location = './../../showSalaryScale.php';
                       alert('Foreign key constraint failed!');
+                      window.location = './../../showSalaryScale.php';
                       </script>
                       ";
                   }                     

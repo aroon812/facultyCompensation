@@ -89,7 +89,8 @@ function findTotalTypeSalaries($db){
         else if ($row['type']=='E'){
           $salariesByType["E"]+=$totalSalary;
         }
-        else if (strpos($row['type'],'VIN')){
+        else if (str_replace("VIN1","1",$row['type'])=="1" || str_replace("VIN2","1",$row['type'])=="1" || str_replace("VIN3","1",$row['type'])=="1" ){
+         
           $salariesByType["VIN"]+=$totalSalary;
         }
         else {

@@ -136,16 +136,16 @@
                   elseif (strpos($message, "CHECK")){
                     echo "
                       <script>
-                      window.location = './../../../showEmpInfoYear.php';
                       alert('Check constraint failed!');
+                      window.location = './../../../showEmpInfoYear.php';
                       </script>
                       ";
                   } 
                   elseif (strpos($message, "FOREIGN")){
                     echo "
                       <script>
-                      window.location = './../../../showEmpInfoYear.php';
                       alert('Foreign key constraint failed!');
+                      window.location = './../../../showEmpInfoYear.php';
                       </script>
                       ";
                   }                     
