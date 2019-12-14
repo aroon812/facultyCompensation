@@ -51,7 +51,15 @@
         <h4>First Name:</h4>
         - The first name of a faculty member.
         <h4>Type:</h4>
-        - The employment track of a faculty member.
+        - The employment track of a faculty member. <br>
+        - Valid entries: T, I, CL, S, VAPx, VINx, and E <br>
+        - Tenure-line <br>
+        - Instructor <br>
+        - Clinical <br>
+        - Shared <br>
+        - Visiting Assistant Professor for x years <br>
+        - Visiting Instructor for x years <br>
+        - Emeritus 
         <h4>Department:</h4>
         - The department ID of the department in which the faculty member works.
         <br>

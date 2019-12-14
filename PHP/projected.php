@@ -36,8 +36,7 @@
   <!-- Add your site or application content here -->
 
   <div id="container">
-
-    <div id="left" class="sticky">
+    <div id="left25" class="sticky">
       <p>
         <h2>Projected</h2>
         This table holds the base and adjusted salaries of each faculty member for the next fiscal year. On the right, we calculate
@@ -48,9 +47,25 @@
         <h4>Last Name:</h4>
         - The last name of a faculty member.
         <h4> Type: </h4>
-        - The track of the faculty member.
+        - The track of the faculty member. <br>
+        - Valid entries: T, I, CL, S, VAPx, VINx, and E <br>
+        - Tenure-line <br>
+        - Instructor <br>
+        - Clinical <br>
+        - Shared <br>
+        - Visiting Assistant Professor for x years <br>
+        - Visiting Instructor for x years <br>
+        - Emeritus 
         <h4> Rank: </h4>
-        - The level of employment for the faculty member.
+        - The level of employment for the faculty member. <br>
+        - The level of employment for an employee. <br>
+        - Valid entries: Inst, Asst, Assc, CLAsst, CLAssc and Full <br>
+        - Instructor <br>
+        - Assistant Professor <br>
+        - Associate Professor <br>
+        - Clinical Assistant <br>
+        - Clinical Associate <br>
+        - Full Professor
         <h4>Base Salary:</h4>
         - The compensation for an employee at a certain rank and step without adjustments.
         <h4>Total Salary:</h4>
@@ -58,66 +73,12 @@
       </p>
     </div>
 
-    <div id="right" class="sticky">
-      <h3>Projected Report Stats</h3>
-      <p>
-        This is a breakdown of the projected table numbers organized by both "Type" and by "Rank".
-      </p>
-      <h4>Breakdown Tables:</h4>
-      <div id="container">
-        <div id="right50">
-          <?php
-          include "totalSalary.php";
-          $db_file = '../DB/bigTuba.db';
-          $db = new PDO('sqlite:' . $db_file);
-          $salariesByRank = findTotalRankSalaries($db);
-          $total = 0;
-          foreach ($salariesByRank as $salary) {
-            $total += $salary;
-          }
-          echo "<table align='left'>";
-          echo "<tr><td>Salary By Rank</td></tr>";
-          echo "<tr><td>" . "Assistant" . "</td><td>" . $salariesByRank['Asst'] . "</td></tr>";
-          echo "<tr><td>" . "Associate" . "</td><td>" . $salariesByRank['Assc'] . "</td></tr>";
-          echo "<tr><td>" . "Full" . "</td><td>" . $salariesByRank['Full'] . "</td></tr>";
-          echo "<tr><td>" . "Instructor" . "</td><td>" . $salariesByRank['Inst'] . "</td></tr>";
-          echo "<tr><td>" . "Clinical Assitant" . "</td><td>" . $salariesByRank['CLAsst'] . "</td></tr>";
-          echo "<tr><td>" . "Clinical Associate" . "</td><td>" . $salariesByRank['CLAssc'] . "</td></tr>";
-          echo "<tr><td><b>Total</b></td><td><b>$total</b></td></tr>";
-          echo "</table>";
-          $db = null;
-          ?>
-        </div>
-        <div id="left50">
-          <?php
+    
 
-          $db_file = '../DB/bigTuba.db';
-          $db = new PDO('sqlite:' . $db_file);
-          $salariesByType = findTotalTypeSalaries($db);
-          $total = 0;
-          foreach ($salariesByType as $salary) {
-            $total += $salary;
-          }
-          echo "<table align='right'>";
-          echo "<tr><td>Salary By Type</td></tr>";
-          echo "<tr><td>" . "Tenure" . "</td><td>" . $salariesByType['T'] . "</td></tr>";
-          echo "<tr><td>" . "Instructor" . "</td><td>" . $salariesByType['I'] . "</td></tr>";
-          echo "<tr><td>" . "Clinical" . "</td><td>" . $salariesByType['CL'] . "</td></tr>";
-          echo "<tr><td>" . "Shared" . "</td><td>" . $salariesByType['S'] . "</td></tr>";
-          echo "<tr><td>" . "Visiting Assistant" . "</td><td>" . $salariesByType['VAP'] . "</td></tr>";
-          echo "<tr><td>" . "Visiting Instructor" . "</td><td>" . $salariesByType['VIN'] . "</td></tr>";
-          echo "<tr><td>" . "Emeritus" . "</td><td>" . $salariesByType['E'] . "</td></tr>";
-          echo "<tr><td><b>Total</b></td><td><b>$total</b></td></tr>";
-          echo "</table>";
-          $db = null;
-          ?>
-        </div>
-      </div>
-    </div>
-
-    <div id="center">
+    <div id="right74">
       <h2>Projected Report</h2>
       <?php
+      include "totalSalary.php";
       //path to the SQLite database file
       $db_file = '../DB/bigTuba.db';
 
@@ -159,8 +120,10 @@
                 $totalSalaries += $totalSalary;
             }
             echo "</table>";
+            echo "<h4> Total Salary: $totalSalaries </h4>";
           }
           $newYear = $year + 1;
+
           unprojectEmployee($db, $newYear);
           //disconnect from db
           $db = null;

@@ -47,9 +47,25 @@
         <h4>Last Name:</h4>
         - The last name of a faculty member.
         <h4> Type: </h4>
-        - The track of the faculty member.
+        - The track of the faculty member. <br>
+        - Valid entries: T, I, CL, S, VAPx, VINx, and E <br>
+        - Tenure-line <br>
+        - Instructor <br>
+        - Clinical <br>
+        - Shared <br>
+        - Visiting Assistant Professor for x years <br>
+        - Visiting Instructor for x years <br>
+        - Emeritus 
         <h4> Rank: </h4>
-        - The level of employment for the faculty member. 
+        - The level of employment for the faculty member. <br>
+        - The level of employment for an employee. <br>
+        - Valid entries: Inst, Asst, Assc, CLAsst, CLAssc and Full <br>
+        - Instructor <br>
+        - Assistant Professor <br>
+        - Associate Professor <br>
+        - Clinical Assistant <br>
+        - Clinical Associate <br>
+        - Full Professor
         <h4>Base Salary:</h4>
         - The compensation for an employee at a certain rank and step without adjustments.
         <h4>Total Salary:</h4>

@@ -28,7 +28,7 @@ function findTotalSalary($db, $upsID, $year){
                 }   
               }
             }
-            
+              
               return $baseSalary;
             }
 

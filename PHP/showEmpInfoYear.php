@@ -55,19 +55,28 @@
         <h4>Include Next Year:</h4>
         - The predicted employment status of an employee for the next year.
         <h4>Rank:</h4>
-        - The level of employment for an employee.
+        - The level of employment for an employee. <br>
+        - Valid entries: Inst, Asst, Assc, CLAsst, CLAssc and Full <br>
+        - Instructor <br>
+        - Assistant Professor <br>
+        - Associate Professor <br>
+        - Clinical Assistant <br>
+        - Clinical Associate <br>
+        - Full Professor 
         <br>
         - Foreign Key referencing Salary Adjustments
         <h4>Step:</h4>
         - The progress of an employee in their rank.
+        <br>
         - Foreign Key referencing Salary Adjustments
         <br>
         <h4>Step Year:</h4>
         - The progress of an employee in their step for full proffessors.
-        <h4>Last Name:</h4>
-        - The last name of a faculty member.
         <h4>First Name:</h4>
         - The first name of a faculty member.
+        <h4>Last Name:</h4>
+        - The last name of a faculty member.
+      
       </p>
     </div>
 

@@ -42,10 +42,19 @@
         <h3>Column Value Descriptions:</h3>
         <h4>Rank:</h4>
         - The level of employment for an employee.
+        - The level of employment for an employee. <br>
+        - Valid entries: Inst, Asst, Assc, CLAsst, CLAssc and Full <br>
+        - Instructor <br>
+        - Assistant Professor <br>
+        - Associate Professor <br>
+        - Clinical Assistant <br>
+        - Clinical Associate <br>
+        - Full Professor 
         <br>
         - Primary Key
         <h4>Step:</h4>
-        - The progress of an employee in their rank.
+        - The progress of an employee in their rank. <br>
+        - Valid steps vary by rank 
         <br>
         - Primary Key
         <h4>Base Salary:</h4>
