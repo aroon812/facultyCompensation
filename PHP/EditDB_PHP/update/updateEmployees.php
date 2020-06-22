@@ -9,7 +9,6 @@
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="../../../CSS/main.css">
 
   <meta name="theme-color" content="#fafafa">
@@ -26,7 +25,7 @@
     <a href="./../../past.php">Past</a>
     <a href="./../../projected.php">Projected</a>
     <a href="./../../showDepartments.php"> Departments</a>
-    <a class= "active" href="./../../showEmployees.php"> Employees</a>
+    <a class="active" href="./../../showEmployees.php"> Employees</a>
     <a href="./../../showAdjustments.php"> Adjustments</a>
     <a href="./../../showSalaryScale.php"> Salary Scale</a>
     <a href="./../../showAdjEmp.php"> Employee Adjustments</a>
@@ -71,21 +70,21 @@
     <div id="center">
       <div class="sqlBorder">
         <?php session_start(); ?>
-            <form action="./MSG/updateEmployeesMsg.php" method="post">
-		          <fieldset>
-        
-			            <legend>Update Employee</legend>
-				
-			              Please fill out the following information to update the database.<br><br>
-			              <?php				
-                      $upsID = $_POST['upsID'];
-                      $lastName = $_POST['lastName'];
-                      $firstName = $_POST['firstName'];
-                      $type = $_POST['type'];
-                      $deptID = $_POST['deptID'];
+        <form action="./MSG/updateEmployeesMsg.php" method="post">
+          <fieldset>
 
-                      echo 
-                      "
+            <legend>Update Employee</legend>
+
+            Please fill out the following information to update the database.<br><br>
+            <?php
+            $upsID = $_POST['upsID'];
+            $lastName = $_POST['lastName'];
+            $firstName = $_POST['firstName'];
+            $type = $_POST['type'];
+            $deptID = $_POST['deptID'];
+
+            echo
+              "
                       UPS ID:<br> 
                       <input type = 'text' name = 'upsID' value='$upsID' required autofocus readonly><br>
                       
@@ -103,11 +102,12 @@
 
                       <input type = 'submit' name = 'submit' value='Update Employee'>
                       ";
-                    ?>			
-		          </fieldset>
-          </form>
+            ?>
+          </fieldset>
+        </form>
       </div>
     </div>
   </div>
 </body>
+
 </html>

@@ -9,7 +9,6 @@
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="../CSS/main.css">
 
   <meta name="theme-color" content="#fafafa">
@@ -33,8 +32,6 @@
     <a href="../HTML/DBAccess.html">SQL Editor</a>
   </div>
 
-  <!-- Add your site or application content here -->
-
   <div id="container">
     <div id="left25" class="sticky">
       <p>
@@ -55,7 +52,7 @@
         - Shared <br>
         - Visiting Assistant Professor for x years <br>
         - Visiting Instructor for x years <br>
-        - Emeritus 
+        - Emeritus
         <h4> Rank: </h4>
         - The level of employment for the faculty member. <br>
         - The level of employment for an employee. <br>
@@ -73,8 +70,6 @@
       </p>
     </div>
 
-    
-
     <div id="right74">
       <h2>Projected Report</h2>
       <?php
@@ -83,13 +78,9 @@
       $db_file = '../DB/bigTuba.db';
 
       try {
-        //open connection to the airport database file
+        //open connection to the database 
         $db = new PDO('sqlite:' . $db_file);
-
-        //set errormode to use exceptions
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //return all passengers, and store the result set
-        //$query_str = $db->prepare("with A as (select max(year) from EmployeePositionInformationByYear) select firstName, lastName, baseSalary from SalaryScale natural join EmployeePositionInformationByYear natural join Employee where year in A");
         $query_str = $db->prepare("SELECT max(year) as year from EmployeePositionInformationByYear");
         if ($query_str->execute()) {
           $i = 0;
@@ -115,9 +106,9 @@
             echo "<table align='center'>";
             echo "<tr><td>First Name</td><td>Last Name</td><td>Type</td><td>Rank</td><td>Base Salary</td><td>Total Salary</td></tr>";
             while ($row = $result_set->fetch()) {
-                $totalSalary = findTotalSalary($db, $row['upsID'], $row['year']);
-                echo "<tr><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['type'] . "</td><td>" . $row['rank'] . "</td><td>" . $row['baseSalary'] . "</td><td>" . $totalSalary . "</td></tr>";
-                $totalSalaries += $totalSalary;
+              $totalSalary = findTotalSalary($db, $row['upsID'], $row['year']);
+              echo "<tr><td>" . $row['firstName'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['type'] . "</td><td>" . $row['rank'] . "</td><td>" . $row['baseSalary'] . "</td><td>" . $totalSalary . "</td></tr>";
+              $totalSalaries += $totalSalary;
             }
             echo "</table>";
             echo "<h4> Total Salary: $totalSalaries </h4>";
@@ -141,14 +132,11 @@
   function projectEmployee($db, $year, $upsID)
   {
     try {
-      //open connection to the airport database file
       $newyear = $year + 1;
-
       $query_str9 = $db->prepare("select * from EmployeePositionInformationByYear where year=:year and upsID=:upsID");
       $query_str9->bindParam(':year', $year);
       $query_str9->bindParam(':upsID', $upsID);
 
-      //return all passengers, and store the result set
       if ($query_str9->execute()) {
         $result_set = $db->query("select * from EmployeePositionInformationByYear where year=$year and upsID=$upsID");
         $row = $result_set->fetch();

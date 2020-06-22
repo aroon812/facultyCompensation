@@ -9,7 +9,6 @@
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="../../../CSS/main.css">
 
   <meta name="theme-color" content="#fafafa">
@@ -19,68 +18,63 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
-  
+
   <div class="navbar">
-      <a href="./../../../index.html">Home</a>
-      <a href="./../../../PHP/showCurrent.php">Current</a>
-      <a href="./../../../PHP/past.php">Past</a>
-      <a href="./../../../PHP/projected.php">Projected</a>
-      <a class= "active" href="./../../../PHPshowDepartments.php"> Departments</a>
-      <a href="./../../../PHP/showEmployees.php"> Employees</a>
-      <a href="./../../../PHP/showAdjustments.php"> Adjustments</a>
-      <a href="./../../../PHP/showSalaryScale.php"> Salary Scale</a>
-      <a href="./../../../PHP/showAdjEmp.php"> Employee Adjustments</a>
-      <a href="./../../../PHP/showEmpInfoYear.php">Employee Information By Year</a>
-      <a href="./../../DBAccess.html">SQL Editor</a>
+    <a href="./../../../index.html">Home</a>
+    <a href="./../../../PHP/showCurrent.php">Current</a>
+    <a href="./../../../PHP/past.php">Past</a>
+    <a href="./../../../PHP/projected.php">Projected</a>
+    <a class="active" href="./../../../PHPshowDepartments.php"> Departments</a>
+    <a href="./../../../PHP/showEmployees.php"> Employees</a>
+    <a href="./../../../PHP/showAdjustments.php"> Adjustments</a>
+    <a href="./../../../PHP/showSalaryScale.php"> Salary Scale</a>
+    <a href="./../../../PHP/showAdjEmp.php"> Employee Adjustments</a>
+    <a href="./../../../PHP/showEmpInfoYear.php">Employee Information By Year</a>
+    <a href="./../../DBAccess.html">SQL Editor</a>
+  </div>
+
+  <div id="container">
+
+    <div id="left" class="sticky">
+      <p>
+      <h2>Departments</h2>
+      This table holds data about departments.
+      <h3>Column Value Descriptions:</h3>
+      <h4>Department ID:</h4>
+      - The number that corresponds with a department.
+      <br>
+      - Primary Key
+      <h4>Department Name:</h4>
+      - The name of a department.
+      </p>
     </div>
 
-    <div id="container">
+    <div id="right" class="sticky">
+      <p>
+      <h3>Action Descriptions:</h3>
+      <h4>Add:</h4>
+      The add button will open a form to add a new row of data to the table.
+      <br>
+      - Department ID must be unique.
+      </p>
+    </div>
+    <div id="center">
+      <div class="sqlBorder">
 
-      <div id="left" class="sticky">
-        <p>
-          <h2>Departments</h2>
-          This table holds data about departments.
-          <h3>Column Value Descriptions:</h3>
-          <h4>Department ID:</h4>
-          - The number that corresponds with a department.
-          <br>
-          - Primary Key
-          <h4>Department Name:</h4>
-          - The name of a department.
-        </p>
+        <form action="./../../../PHP/EditDB_PHP/add/addDepartment.php" method="post">
+          <fieldset>
+            <legend>Add Department Form</legend>
+            Please fill out the following information to update the database.<br><br>
+            Department ID:<br>
+            <input type="text" name="deptID" placeholder="department ID" required autofocus><br>
+            Department Name:<br>
+            <input type="text" name="deptName" placeholder="department name" required><br>
+            <input type="submit" name="submit" value="Add Department">
+          </fieldset>
+        </form>
       </div>
-      
-      <div id="right" class="sticky">
-        <p>
-          <h3>Action Descriptions:</h3>
-          <h4>Add:</h4>
-          The add button will open a form to add a new row of data to the table.
-          <br>
-          - Department ID must be unique.
-        </p>
-      </div>
-<div id="center">
-    <div class="sqlBorder">
-
-<form action="./../../../PHP/EditDB_PHP/add/addDepartment.php" method="post">
-  <fieldset>
-    <legend>Add Department Form</legend>
-    
-    Please fill out the following information to update the database.<br><br>
-    
-    Department ID:<br> 
-    <input type = "text" name = "deptID" placeholder="department ID" required autofocus><br>
-    
-    Department Name:<br>
-    <input type = "text" name = "deptName" placeholder="department name" required><br>
-    
-    <input type = "submit" name = "submit" value="Add Department">
-  </fieldset>
-</form>
-</div>
-</div>
-</div>
-
-
+    </div>
+  </div>
 </body>
+
 </html>

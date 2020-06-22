@@ -9,7 +9,6 @@
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="../../../CSS/main.css">
 
   <meta name="theme-color" content="#fafafa">
@@ -30,19 +29,19 @@
     <a href="./../../showAdjustments.php"> Adjustments</a>
     <a href="./../../showSalaryScale.php"> Salary Scale</a>
     <a href="./../../showAdjEmp.php"> Employee Adjustments</a>
-    <a class= "active" href="./../../showEmpInfoYear.php">Employee Information By Year</a>
+    <a class="active" href="./../../showEmpInfoYear.php">Employee Information By Year</a>
     <a href="./../../../HTML/DBAccess.html">SQL Editor</a>
   </div>
 
   <div id="container">
 
-<div id="left" class="sticky">
-    <p>
+    <div id="left" class="sticky">
+      <p>
         <h2>Employee Position Information by Year</h2>
         This table holds data about faculty and employees by year.
         <h3>Column Value Descriptions:</h3>
         <h4>Year:</h4>
-        - The year in which the row data is relevant. 
+        - The year in which the row data is relevant.
         <br>
         - Primary Key
         <h4>UPS ID:</h4>
@@ -70,38 +69,38 @@
         <h4>First Name:</h4>
         - The first name of a faculty member.
       </p>
-</div>
+    </div>
 
-<div id="right" class="sticky">
-  <p>
-    <h3>Action Descriptions:</h3>
-    <h4>Update:</h4>
-    The update button will allow you to modify the data for the row that was selected in the table.
-    <br>
-    - Primary keys cannot be modified
-    <br>
-    - Foriegn keys should be modified with caution.
-</div>
+    <div id="right" class="sticky">
+      <p>
+        <h3>Action Descriptions:</h3>
+        <h4>Update:</h4>
+        The update button will allow you to modify the data for the row that was selected in the table.
+        <br>
+        - Primary keys cannot be modified
+        <br>
+        - Foriegn keys should be modified with caution.
+    </div>
 
-<div id="center">
-  <div class="sqlBorder">
-    <?php session_start(); ?>
-    <form action="./MSG/updateEmpInfoYearMsg.php" method="post">
-		<fieldset>
-			<legend>Update Employee Information by Year</legend>
-				
-			Please fill out the following information to update the database.<br><br>
-			<?php				
-                $year = $_POST['year'];
-                $upsID = $_POST['upsID'];
-                $positionNumber = $_POST['positionNumber'];
-                $includeNext = $_POST['includeNext'];
-                $rank = $_POST['rank'];
-                $step = $_POST['step'];
-                $stepYear = $_POST['stepYear'];
+    <div id="center">
+      <div class="sqlBorder">
+        <?php session_start(); ?>
+        <form action="./MSG/updateEmpInfoYearMsg.php" method="post">
+          <fieldset>
+            <legend>Update Employee Information by Year</legend>
 
-                echo 
-                "
+            Please fill out the following information to update the database.<br><br>
+            <?php
+            $year = $_POST['year'];
+            $upsID = $_POST['upsID'];
+            $positionNumber = $_POST['positionNumber'];
+            $includeNext = $_POST['includeNext'];
+            $rank = $_POST['rank'];
+            $step = $_POST['step'];
+            $stepYear = $_POST['stepYear'];
+
+            echo
+              "
                 Year:<br> 
                 <input type = 'text' name = 'year' value='$year' required autofocus readonly><br>
                 
@@ -125,11 +124,12 @@
 
                 <input type = 'submit' name = 'submit' value='Update Employee Information by Year'>
                 ";
-			?>			
-		</fieldset>
-	</form>
+            ?>
+          </fieldset>
+        </form>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </body>
+
 </html>

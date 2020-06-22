@@ -2,12 +2,8 @@
 function findTotalSalary($db, $upsID, $year){
               $adjustmentID_results = $db->query("select adjID, upsID from EmployeeAdjustments natural join Employee where year = $year and upsID = $upsID;");
               $adjustmentIDs = $adjustmentID_results->fetchAll(PDO::FETCH_ASSOC);
-            
               $baseSalaryQuery = $db->query("select baseSalary from EmployeePositionInformationByYear natural join SalaryScale where year=$year and upsID = $upsID");
-
               $baseSalary = $baseSalaryQuery->fetch()['baseSalary'];
-              //print_r($baseSalary);
-              //print_r(" ");
               
               if (is_array($adjustmentIDs) || is_object($adjustmentIDs)){
               foreach ($adjustmentIDs as $adjustmentID){
@@ -101,4 +97,3 @@ function findTotalTypeSalaries($db){
     return $salariesByType;
   }
 }
-?>

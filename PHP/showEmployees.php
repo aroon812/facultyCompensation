@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>University of Puget Sound Payroll</title>
@@ -8,7 +9,6 @@
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="../CSS/main.css">
 
   <meta name="theme-color" content="#fafafa">
@@ -24,16 +24,13 @@
     <a href="./past.php">Past</a>
     <a href="./projected.php">Projected</a>
     <a href="./showDepartments.php"> Departments</a>
-    <a class= "active" href="./showEmployees.php"> Employees</a>
+    <a class="active" href="./showEmployees.php"> Employees</a>
     <a href="./showAdjustments.php"> Adjustments</a>
     <a href="./showSalaryScale.php"> Salary Scale</a>
     <a href="./showAdjEmp.php"> Employee Adjustments</a>
     <a href="./showEmpInfoYear.php">Employee Information By Year</a>
     <a href="../HTML/DBAccess.html">SQL Editor</a>
   </div>
-
-  <!-- Add your site or application content here -->
-
 
   <div id="container">
 
@@ -59,7 +56,7 @@
         - Shared <br>
         - Visiting Assistant Professor for x years <br>
         - Visiting Instructor for x years <br>
-        - Emeritus 
+        - Emeritus
         <h4>Department:</h4>
         - The department ID of the department in which the faculty member works.
         <br>
@@ -90,25 +87,22 @@
     <div id="center">
       <h2>Employees Table</h2>
       <?php
-          //path to the SQLite database file
-          $db_file = '../DB/bigTuba.db';
+      //path to the SQLite database file
+      $db_file = '../DB/bigTuba.db';
 
-          try {
-              //open connection to the airport database file
-              $db = new PDO('sqlite:' . $db_file);
+      try {
+        //open connection to the database
+        $db = new PDO('sqlite:' . $db_file);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query_str = $db->prepare("select * from Employee");
 
-              //set errormode to use exceptions
-              $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-              //return all passengers, and store the result set
-              $query_str = $db->prepare("select * from Employee");
-          
-              if ($query_str->execute()){
-                  $i = 0;
-                  $result_set = $db->query("select * from Employee");
-                  echo "<table align='center'>";
-                  echo "<tr><td>UPS ID</td><td>Last Name</td><td>First Name</td><td>Type</td><td>Department</td></tr>";
-                  while($row = $result_set->fetch()) {
-                    echo "<tr><td>" . $row['upsID'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['firstName'] . "</td><td>" . $row['type'] . "</td><td>" . $row['deptID'] . "</td><td>
+        if ($query_str->execute()) {
+          $i = 0;
+          $result_set = $db->query("select * from Employee");
+          echo "<table align='center'>";
+          echo "<tr><td>UPS ID</td><td>Last Name</td><td>First Name</td><td>Type</td><td>Department</td></tr>";
+          while ($row = $result_set->fetch()) {
+            echo "<tr><td>" . $row['upsID'] . "</td><td>" . $row['lastName'] . "</td><td>" . $row['firstName'] . "</td><td>" . $row['type'] . "</td><td>" . $row['deptID'] . "</td><td>
                           </td><td> <form action='./EditDB_PHP/update/updateEmployees.php' method='post'>
                             <input type='hidden' name='upsID' value= $row[0]>
                             <input type='hidden' name='lastName' value= $row[1]>
@@ -127,17 +121,17 @@
                             <input type='submit' value='Delete'>
                           </form>
                           </td></tr>";
-                  }
-                  echo "</table>";
-              }
-              //disconnect from db
-              $db = null;
-          } catch(PDOException $e) {
-              die('Exception : '.$e->getMessage());
           }
+          echo "</table>";
+        }
+        //disconnect from db
+        $db = null;
+      } catch (PDOException $e) {
+        die('Exception : ' . $e->getMessage());
+      }
       ?>
     </div>
-
   </div>
 </body>
+
 </html>

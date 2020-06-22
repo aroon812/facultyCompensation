@@ -9,7 +9,6 @@
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="../../../CSS/main.css">
 
   <meta name="theme-color" content="#fafafa">
@@ -28,14 +27,14 @@
     <a href="./../../showDepartments.php"> Departments</a>
     <a href="./../../showEmployees.php"> Employees</a>
     <a href="./../../showAdjustments.php"> Adjustments</a>
-    <a class= "active" href="./../../showSalaryScale.php"> Salary Scale</a>
+    <a class="active" href="./../../showSalaryScale.php"> Salary Scale</a>
     <a href="./../../showAdjEmp.php"> Employee Adjustments</a>
     <a href="./../../showEmpInfoYear.php">Employee Information By Year</a>
-    <a href="./../../../HTML/DBAccess.html">SQL Editor</a> 
+    <a href="./../../../HTML/DBAccess.html">SQL Editor</a>
   </div>
   <div id="container">
 
-<div id="left" class="sticky">
+    <div id="left" class="sticky">
       <p>
         <h2>Salary Scale</h2>
         This table holds data about the unadjusted salary for certain levels of employment.
@@ -51,34 +50,33 @@
         <h4>Base Salary:</h4>
         - The starting compensation for an employee at a certain rank and step without adjustments.
       </p>
-</div>
+    </div>
 
-<div id="right" class="sticky">
-  <p>
-    <h3>Action Descriptions:</h3>
-    <h4>Update:</h4>
-    The update button will allow you to modify the data for the row that was selected in the table.
-    <br>
-    - Primary keys cannot be modified
-    <br>
-    - Foriegn keys should be modified with caution.
-</div>
+    <div id="right" class="sticky">
+      <p>
+        <h3>Action Descriptions:</h3>
+        <h4>Update:</h4>
+        The update button will allow you to modify the data for the row that was selected in the table.
+        <br>
+        - Primary keys cannot be modified
+        <br>
+        - Foriegn keys should be modified with caution.
+    </div>
 
-<div id="center">
-  <div class="sqlBorder">
-    <?php session_start(); ?>
-    <form action="./MSG/updateSalaryScaleMsg.php" method="post">
-		<fieldset>
-			<legend>Update Salary Scale</legend>
-				
-			Please fill out the following information to update the database.<br><br>
-			<?php				
-                $rank = $_POST['rank'];
-                $step = $_POST['step'];
-                $baseSalary = $_POST['baseSalary'];
+    <div id="center">
+      <div class="sqlBorder">
+        <?php session_start(); ?>
+        <form action="./MSG/updateSalaryScaleMsg.php" method="post">
+          <fieldset>
+            <legend>Update Salary Scale</legend>
+            Please fill out the following information to update the database.<br><br>
+            <?php
+            $rank = $_POST['rank'];
+            $step = $_POST['step'];
+            $baseSalary = $_POST['baseSalary'];
 
-                echo 
-                "
+            echo
+              "
                 Rank:<br> 
                 <input type = 'text' name = 'rank' value='$rank' required autofocus readonly><br>
                 
@@ -90,11 +88,12 @@
 
                 <input type = 'submit' name = 'submit' value='Update Salary Scale'>
                 ";
-			?>			
-		</fieldset>
-	</form>
+            ?>
+          </fieldset>
+        </form>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </body>
+
 </html>

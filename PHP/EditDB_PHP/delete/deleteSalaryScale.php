@@ -9,7 +9,6 @@
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="../../../CSS/main.css">
 
   <meta name="theme-color" content="#fafafa">
@@ -78,7 +77,7 @@
           //path to the SQLite database file
           $db_file = './../../../DB/bigTuba.db';
           try {
-            //open connection to the airport database file
+            //open connection to the database
             $db = new PDO('sqlite:' . $db_file);
             $db->exec('PRAGMA foreign_keys = ON;');
             //set errormode to use exceptions
