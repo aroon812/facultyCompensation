@@ -102,7 +102,9 @@
           if ($query_str3->execute()) {
             $i = 0;
             $totalSalaries = 0;
-            $result_set = $db->query("with A as (select max(year) from EmployeePositionInformationByYear) select firstName, lastName, baseSalary, year, upsID, rank, type from SalaryScale natural join EmployeePositionInformationByYear natural join Employee where year in A");
+            $result_set = $db->query("with A as (select max(year) from EmployeePositionInformationByYear) select firstName, lastName, baseSalary, year, upsID, rank, type from SalaryScale 
+                                      natural join EmployeePositionInformationByYear
+                                      natural join Employee where year in A");
             echo "<table align='center'>";
             echo "<tr><td>First Name</td><td>Last Name</td><td>Type</td><td>Rank</td><td>Base Salary</td><td>Total Salary</td></tr>";
             while ($row = $result_set->fetch()) {
